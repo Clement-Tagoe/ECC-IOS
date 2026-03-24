@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a525286f0d8b9ad60f7b45bb0013d33e",
+    "content-hash": "b75a50dae9970b2f909a93896c5f7cbe",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -1544,6 +1544,59 @@
                 }
             ],
             "time": "2025-12-03T09:33:47+00:00"
+        },
+        {
+            "name": "ghaffaru/ghcities-php",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ghaffaru/ghcities-php.git",
+                "reference": "9404357e100c0eb58d845f6d554d7b5d00e6f6d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ghaffaru/ghcities-php/zipball/9404357e100c0eb58d845f6d554d7b5d00e6f6d4",
+                "reference": "9404357e100c0eb58d845f6d554d7b5d00e6f6d4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "phpunit/phpunit": "^9.3",
+                "vimeo/psalm": "^3.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ghaffaru\\GhCities\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ghaffaru",
+                    "email": "mudashiruagm@gmail.com",
+                    "homepage": "https://github.com/ghaffaru/ghcities-php",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP package for working with cities in ghana",
+            "homepage": "https://github.com/ghaffaru/ghcities-php",
+            "keywords": [
+                "ghaffaru",
+                "ghana-cities"
+            ],
+            "support": {
+                "issues": "https://github.com/ghaffaru/ghcities-php/issues",
+                "source": "https://github.com/ghaffaru/ghcities-php/tree/1.1.0"
+            },
+            "time": "2022-06-14T16:22:37+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -11584,5 +11637,5 @@
         "php": "^8.2"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
