@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Filament\Resources\Tasks\Schemas;
+
+use App\Enums\TaskPriority;
+use App\Enums\TaskStatus;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Schema;
+
+class TaskForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        return $schema
+            ->components([
+                Section::make('Task Details')
+                    ->columns(2)
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('title')
+                            ->required()
+                            ->maxLength(255),
+
+                        Select::make('assigned_to')
+                            ->label('Assign to (Collaborators)')
+                            ->relationship('collaborators', 'name')
+                            ->multiple()
+                            ->searchable()
+                            ->preload(),
+
+                        ToggleButtons::make('status')
+                            ->options(TaskStatus::class)
+                            ->inline()
+                            ->required()
+                            ->live()
+                            ->default(TaskStatus::Todo)
+                            ->columnSpanFull(),
+
+                        Radio::make('priority')
+                            ->options(TaskPriority::class)
+                            ->inline()
+                            ->required()
+                            ->default(TaskPriority::Medium),
+
+                        DatePicker::make('due_date'),
+
+                        RichEditor::make('description')
+                            ->columnSpanFull(),
+
+                        DateTimePicker::make('completed_at')
+                            ->visible(fn (Get $get): bool => in_array($get('status'), [
+                                TaskStatus::Completed,
+                                TaskStatus::Completed->value,
+                            ])),
+                    ]),
+            ]);
+    }
+}

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             AgencySeeder::class,
             CallLogSeeder::class,
             ValidCaseSeeder::class,
+            SectionSeeder::class,
         ]);
     }
 }
