@@ -14,6 +14,9 @@ use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class CallLogResource extends Resource
 {
@@ -22,6 +25,10 @@ class CallLogResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-phone-arrow-down-left';
 
     protected static ?string $recordTitleAttribute = 'incoming_calls';
+
+    protected static string | UnitEnum | null $navigationGroup = 'Call-Taking';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
@@ -53,5 +60,13 @@ class CallLogResource extends Resource
             'edit' => EditCallLog::route('/{record}/edit'),
             'view' => ViewCallLog::route('/{record}'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

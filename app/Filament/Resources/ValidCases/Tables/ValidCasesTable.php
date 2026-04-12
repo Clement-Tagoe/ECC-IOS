@@ -4,8 +4,13 @@ namespace App\Filament\Resources\ValidCases\Tables;
 
 use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
@@ -13,6 +18,7 @@ use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\Indicator;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -34,22 +40,17 @@ class ValidCasesTable
                     ->sortable(),
                 TextColumn::make('agency.name')
                     ->searchable(),
-                TextColumn::make('location')
+                TextColumn::make('location.name')
                     ->searchable(),
-                TextColumn::make('HOD')
-                    ->label('HOD')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Pending Review' => 'warning',
-                        'Reviewed' => 'success',
-                    }),
-                TextColumn::make('region')
+                TextColumn::make('status')
+                    ->badge(),
+                TextColumn::make('region.name')
                     ->searchable(),
                 TextColumn::make('contact_name')
                     ->searchable(),
                 TextColumn::make('contact_number')
                     ->searchable(),
-                TextColumn::make('case_nature')
+                TextColumn::make('validCaseNature.name')
                     ->searchable(),
                 TextColumn::make('created_by')
                     ->searchable(),
@@ -101,32 +102,21 @@ class ValidCasesTable
                 SelectFilter::make('agency')
                         ->relationship('agency', 'name'),
                 SelectFilter::make('region')
-                        ->options([
-                            'Ahafo' => 'Ahafo',
-                            'Ashanti' => 'Ashanti',
-                            'Bono' => 'Bono',
-                            'Bono East' => 'Bono East',
-                            'Central' => 'Central',
-                            'Eastern' => 'Eastern',
-                            'Greater Accra' => 'Greater Accra',
-                            'North East' => 'North East',
-                            'Northern' => 'Northern',
-                            'Oti' => 'Oti',
-                            'Savannah' => 'Savannah',
-                            'Upper East' => 'Upper East',
-                            'Upper West' => 'Upper West',
-                            'Volta' => 'Volta',
-                            'Western' => 'Western',
-                            'Western North' => 'Western North',
-                        ]),
+                        ->relationship('region', 'name'),
+                    TrashedFilter::make(),
             ], layout: FiltersLayout::AboveContent)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }

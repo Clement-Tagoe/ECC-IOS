@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class TaskResource extends Resource
 {
@@ -23,6 +24,8 @@ class TaskResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    protected static string | UnitEnum | null $navigationGroup = 'General';
 
     public static function form(Schema $schema): Schema
     {

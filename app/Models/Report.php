@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\ReportPriority;
+use App\Enums\ReportStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,6 +15,11 @@ class Report extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'status' => ReportStatus::class,
+        'priority' => ReportPriority::class,
+    ];
 
     public function user(): BelongsTo
     {

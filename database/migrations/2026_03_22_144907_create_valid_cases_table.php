@@ -16,18 +16,19 @@ return new class extends Migration
             $table->string('case_id');
             $table->time('reporting_time');
             $table->date('reporting_date');
-            $table->foreignId('agency_id');
-            $table->string('location');
-            $table->string('HOD');
-            $table->string('region');
+            $table->foreignId('region_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('agency_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('valid_case_nature_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('location_id')->constrained()->cascadeOnDelete();
+            $table->string('status');
             $table->string('contact_name');
             $table->string('contact_number');
             $table->longText('description');
-            $table->string('case_nature');
             $table->longText('feedback_comment');
-            $table->string('created_by');
             $table->timestamps();
             $table->softDeletes();
+            $table->userstamps();
+            $table->userstampSoftDeletes();
         });
     }
 

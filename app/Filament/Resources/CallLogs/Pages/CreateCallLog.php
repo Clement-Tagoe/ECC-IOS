@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateCallLog extends CreateRecord
 {
     protected static string $resource = CallLogResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('view', ['record' => $this->getRecord()]);
+    }
 }

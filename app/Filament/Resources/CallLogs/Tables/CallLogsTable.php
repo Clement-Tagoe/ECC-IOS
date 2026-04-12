@@ -2,10 +2,16 @@
 
 namespace App\Filament\Resources\CallLogs\Tables;
 
+use App\Enums\CallLogStatus;
 use Carbon\Carbon;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\RestoreAction;
+use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
@@ -13,6 +19,7 @@ use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\Indicator;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -21,6 +28,7 @@ class CallLogsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('date', 'desc')
             ->columns([
                 TextColumn::make('incoming_calls')
                     ->numeric()
@@ -37,13 +45,8 @@ class CallLogsTable
                 TextColumn::make('unanswered_calls')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('HOD')
-                    ->label('HOD')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Pending Review' => 'warning',
-                        'Reviewed' => 'success',
-                    }),
+                TextColumn::make('status')
+                    ->badge(),
                 TextColumn::make('shift')
                     ->searchable(),
                 TextColumn::make('start_time')
@@ -56,8 +59,18 @@ class CallLogsTable
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('date')
                     ->date(),
-                TextColumn::make('created_by')
-                    ->searchable(),
+                TextColumn::make('creator.name')
+                    ->label('Created by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('editor.name')
+                    ->label('Edited by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('destroyer.name')
+                    ->label('Deleted by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -74,10 +87,10 @@ class CallLogsTable
             ->filters([
                 Filter::make('date')
                     ->schema([
-                        DatePicker::make('created_from')
-                            ->default(Carbon::today()->subDays(5)),
-                        DatePicker::make('created_until')
-                            ->default(Carbon::today()),
+                        DatePicker::make('created_from'),
+                            // ->default(Carbon::today()->subDays(5)),
+                        DatePicker::make('created_until'),
+                            // ->default(Carbon::today()),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -108,15 +121,25 @@ class CallLogsTable
                             'Day' => 'Day',
                             'Night' => 'Night',
                         ]),
+                SelectFilter::make('status')
+                        ->options(CallLogStatus::class),
+                TrashedFilter::make(),
             ], layout: FiltersLayout::AboveContent)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
+                ForceDeleteAction::make(),
+                RestoreAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
                 ]),
             ]);
     }
+
+    
 }

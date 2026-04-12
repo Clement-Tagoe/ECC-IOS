@@ -11,6 +11,7 @@ use App\Filament\Resources\Agencies\Schemas\AgencyInfolist;
 use App\Filament\Resources\Agencies\Tables\AgenciesTable;
 use App\Models\Agency;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
@@ -22,6 +23,8 @@ class AgencyResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static string | UnitEnum | null $navigationGroup = 'General';
 
     public static function form(Schema $schema): Schema
     {

@@ -24,13 +24,18 @@ class ValidCaseInfolist
                             ->time(),
                         TextEntry::make('reporting_date')
                             ->date(),
-                        TextEntry::make('agency.name'),
-                        TextEntry::make('location'),
-                        TextEntry::make('region'),
+                        TextEntry::make('agency.name')
+                            ->label('Responding Agency'),
+                        TextEntry::make('location.name')
+                            ->label('Location'),
+                        TextEntry::make('region.name')
+                            ->label('Region'),
                         TextEntry::make('contact_name'),
                         TextEntry::make('contact_number'),
-                        TextEntry::make('case_nature'),
-                        TextEntry::make('created_by'),
+                        TextEntry::make('validCaseNature.name')
+                            ->label('Case Nature'),
+                        TextEntry::make('status')
+                            ->badge(),
                     ]),
 
                 Section::make('Description & Feedback')
@@ -42,17 +47,25 @@ class ValidCaseInfolist
                     ->columns(2)
                     ->columnSpanFull(),
 
-                Section::make('HOD Review')
+                Section::make()
                     ->schema([
-                        TextEntry::make('HOD')
-                            ->label('HOD')
-                            ->badge()
-                            ->color(fn (string $state): string => match ($state) {
-                                'Pending Review' => 'warning',
-                                'Reviewed' => 'success',
-                            }),
-                        ]),
-                        
+                        Group::make([
+                                TextEntry::make('creator.name')
+                                    ->label('Created by'), 
+                                TextEntry::make('editor.name')
+                                    ->label('Edited by'),
+                                TextEntry::make('destroyer.name') 
+                                    ->label('Deleted by')
+                                ])->columns(3),
+                            Group::make([
+                                TextEntry::make('created_at')
+                                    ->dateTime(),
+                                TextEntry::make('updated_at')
+                                    ->dateTime(),
+                                TextEntry::make('deleted_at')
+                                    ->dateTime(),
+                                ])->columns(3),
+                            ])->columnSpanFull(),
                     ]);
     }
 }

@@ -18,14 +18,15 @@ return new class extends Migration
             $table->integer('valid_calls');
             $table->integer('prank_calls');
             $table->integer('unanswered_calls');
-            $table->string('HOD');
+            $table->string('status');
             $table->string('shift');
             $table->time('start_time');
             $table->time('end_time');
-            $table->string('created_by');
             $table->date('date');
             $table->timestamps();
             $table->softDeletes();
+            $table->userstamps();
+            $table->userstampSoftDeletes();
         });
     }
 

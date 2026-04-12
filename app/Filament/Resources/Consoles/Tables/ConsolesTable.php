@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
+
 class ConsolesTable
 {
     public static function configure(Table $table): Table
@@ -19,7 +20,11 @@ class ConsolesTable
                 TextColumn::make('identifier')
                     ->searchable(),
                 TextColumn::make('status')
+                    ->badge()
                     ->searchable(),
+                TextColumn::make('assignee.name')
+                    ->label('Assigned to')
+                    ->placeholder('Unassigned'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

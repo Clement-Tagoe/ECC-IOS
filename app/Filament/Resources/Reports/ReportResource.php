@@ -15,6 +15,7 @@ use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ReportResource extends Resource
 {
@@ -23,6 +24,8 @@ class ReportResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    protected static string | UnitEnum | null $navigationGroup = 'General';
 
     public static function form(Schema $schema): Schema
     {

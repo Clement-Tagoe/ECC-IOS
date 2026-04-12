@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -13,24 +13,37 @@ class UserForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('email')
-                    ->label('Email address')
-                    ->email()
-                    ->required(),
-                DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
-                    ->required(),
-                TextInput::make('contact')
-                    ->default(null),
-                Select::make('role_id')
-                    ->relationship('role', 'name')
-                    ->default(null),
-                Select::make('department_id')
-                    ->relationship('department', 'name')
-                    ->default(null),
+                Section::make('User Details')
+                    ->columns(2)
+                    ->columnSpanFull()
+                    ->schema([
+                        TextInput::make('name')
+                            ->required(),
+                        TextInput::make('email')
+                            ->label('Email address')
+                            ->email()
+                            ->required(),
+                        TextInput::make('contact')
+                            ->default(null),
+                        TextInput::make('password')
+                            ->password()
+                            ->required()
+                            ->same('passwordConfirmation')
+                            ->hiddenOn('edit'),
+                        TextInput::make('passwordConfirmation')
+                            ->required()
+                            ->password()
+                            ->hiddenOn('edit'),
+                        Select::make('roles')
+                            ->relationship('roles', 'name')
+                            ->multiple()
+                            ->searchable()
+                            ->preload()
+                            ->default(null),
+                        Select::make('department_id')
+                            ->relationship('department', 'name')
+                            ->default(null),
+                ])
             ]);
     }
 }

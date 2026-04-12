@@ -31,6 +31,11 @@ class ConsoleForm
                             ->required()
                             ->live()
                             ->default(ConsoleStatus::Operational),
+                        Select::make('command_center_staff_id')
+                            ->relationship('assignee', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->placeholder('Unassigned'),
                         RichEditor::make('notes')
                             ->columnSpanFull(),
                      ])

@@ -13,6 +13,8 @@ enum ShiftType: string implements HasColor, HasIcon, HasLabel
 
     case Afternoon = 'afternoon';
 
+    case Day = 'day';
+
     case Night = 'night';
 
     public function getLabel(): string
@@ -20,6 +22,7 @@ enum ShiftType: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Morning => 'Morning',
             self::Afternoon => 'Afternoon',
+            self::Day => 'Day',
             self::Night => 'Night',
         };
     }
@@ -29,6 +32,7 @@ enum ShiftType: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Morning => 'info',
             self::Afternoon => 'warning',
+            self::Day => 'success',
             self::Night => 'gray',
         };
     }
@@ -38,6 +42,7 @@ enum ShiftType: string implements HasColor, HasIcon, HasLabel
         return match ($this) {
             self::Morning => Heroicon::Cloud,
             self::Afternoon => Heroicon::Sun,
+            self::Day => Heroicon::Sun,
             self::Night => Heroicon::Moon,
         };
     }

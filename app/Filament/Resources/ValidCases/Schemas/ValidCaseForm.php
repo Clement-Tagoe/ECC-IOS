@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources\ValidCases\Schemas;
 
+use App\Enums\ValidCaseStatus;
+use App\Models\Location;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -30,29 +33,30 @@ class ValidCaseForm
                                     ->required(),
                                 DatePicker::make('reporting_date')
                                     ->required(),
-                                TextInput::make('location')
-                                    ->datalist(\Ghaffaru\GhCities\City::all())
-                                    ->required(),
-                                Select::make('region')
-                                    ->options([
-                                            'Ahafo' => 'Ahafo',
-                                            'Ashanti' => 'Ashanti',
-                                            'Bono' => 'Bono',
-                                            'Bono East' => 'Bono East',
-                                            'Central' => 'Central',
-                                            'Eastern' => 'Eastern',
-                                            'Greater Accra' => 'Greater Accra',
-                                            'North East' => 'North East',
-                                            'Northern' => 'Northern',
-                                            'Oti' => 'Oti',
-                                            'Savannah' => 'Savannah',
-                                            'Upper East' => 'Upper East',
-                                            'Upper West' => 'Upper West',
-                                            'Volta' => 'Volta',
-                                            'Western' => 'Western',
-                                            'Western North' => 'Western North',
-                                        ])
-                                    ->required(),
+                                Select::make('location_id')
+                                    ->relationship('location', 'name')
+                                    ->createOptionForm([
+                                        TextInput::make('name')
+                                            ->unique()
+                                            ->required(),
+                                        Select::make('region_id')
+                                            ->relationship('region', 'name')
+                                            ->required(),
+                                    ])
+                                    ->searchable()
+                                    ->preload()
+                                    ->live()
+                                    ->required()
+                                    ->afterStateUpdated(function (callable $set, $state) {
+                                        // Auto-fill region_id based on selected location
+                                        $location = Location::find($state);
+                                        $set('region_id', $location?->region_id ?? null);
+                                    }),
+                                Select::make('region_id')
+                                    ->relationship('region', 'name')
+                                    ->required()
+                                    ->disabled()
+                                    ->saved(),
                                 Select::make('agency_id')
                                     ->relationship('agency', 'name')
                                     ->required(), 
@@ -70,30 +74,16 @@ class ValidCaseForm
                                     ->required(),
                                 TextInput::make('contact_number')
                                     ->required(),
-                                TextInput::make('case_nature')
-                                    ->datalist([
-                                        'Theft',
-                                        'Assault, Nuisance',
-                                        'Dead Bodies/Unconscious',
-                                        'Accident & Traffic issue',
-                                        'Chaos, Fight, Threat',
-                                        'Illegal drugs, Missing persons',
-                                        'Domestic',
-                                        'Vehicles',
-                                        'Market/Shops/School',
-                                        'Warehouse/office/Hospital',
-                                        'Accident',
-                                        'ECG Related',
-                                        'Trees',
-                                        'Patient Transfer',
-                                        'Sick Person',
-                                        'Dead Body',
-                                        'Damaged Vehicle',
-                                        'Flood',
-                                        'Collapsed building',
-                                        'Earth Tremor',
-                                        'Pipe Leakage',
+                                Select::make('valid_case_nature_id')
+                                    ->createOptionForm([
+                                        TextInput::make('name')
+                                            ->label('Case Nature')
+                                            ->unique()
+                                            ->required(),
                                     ])
+                                    ->relationship('validCaseNature', 'name')
+                                    ->searchable()
+                                    ->preload()
                                     ->required(),   
                             ])
                             ->columns(2),
@@ -113,25 +103,14 @@ class ValidCaseForm
                     ->schema([
                         Section::make('Status')
                             ->schema([
-                                Select::make('HOD')
-                                    ->label('HOD')
-                                    ->options([
-                                        'Pending Review' => 'Pending Review',
-                                        'Reviewed' => 'Reviewed',
-                                    ])
-                                    ->default('Pending Review'),
-                                    // ->disabled(fn (): bool => !Auth::user->hasRole('admin'))
-                                    // ->saved(),
+                                ToggleButtons::make('status')
+                                    ->options(ValidCaseStatus::class)
+                                    ->inline()
+                                    ->required()
+                                    ->live()
+                                    ->default(ValidCaseStatus::InReview)
+                                    ->disabled(fn () => !Auth::user()->hasRole(['System-Admin', 'Director', 'Unit-Head(Call-Taking)'])),
                             ]),
-
-                         Section::make('Personnel On Duty')
-                            ->schema([
-                                TextInput::make('created_by')
-                                    ->default(Auth::user()->name) // Set to current user's name
-                                    ->disabled() // Make the input non-editable
-                                    ->saved()
-                                    ->required(),
-                            ])
                     ])
                     ->columnSpan(['lg' => 1]),
         ])->columns(3);

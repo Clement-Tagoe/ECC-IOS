@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('section_id')->cascadeOnDelete();
             $table->string('identifier');
             $table->string('status');
+            $table->foreignId('command_center_staff_id')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

@@ -2,13 +2,15 @@
 
 namespace App\Filament\Resources\CallLogs\Schemas;
 
+use App\Enums\CallLogStatus;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Auth;
-use Filament\Schemas\Components\Section;
 
 class CallLogForm
 {
@@ -34,6 +36,13 @@ class CallLogForm
                         TextInput::make('unanswered_calls')
                             ->required()
                             ->numeric(),
+                        ToggleButtons::make('status')
+                            ->options(CallLogStatus::class)
+                            ->inline()
+                            ->required()
+                            ->live()
+                            ->default(CallLogStatus::InReview)
+                            ->disabled(fn () => !Auth::user()->hasRole(['System-Admin', 'Director', 'Unit-Head(Call-Taking)'])),
                     ])->columns(2)->columnSpan(1),
 
                 Section::make('Duty Details & Duration')
@@ -50,25 +59,6 @@ class CallLogForm
                             ->required(),
                         TimePicker::make('end_time')
                             ->required(),
-                        TextInput::make('created_by')
-                            ->default(Auth::user()->name) // Set to current user's name
-                            ->disabled() // Make the input non-editable
-                            ->saved()
-                            ->required(),
-                        ])->columns(2)->columnSpan(1),
-
-                Section::make('HOD Review')
-                    ->description('Review by Head of Department')
-                    ->schema([
-                        Select::make('HOD')
-                            ->label('HOD')
-                            ->options([
-                                'Pending Review' => 'Pending Review',
-                                'Reviewed' => 'Reviewed',
-                            ])
-                            ->default('Pending Review'),
-                            // ->disabled(fn (): bool => !Auth::user->hasRole('admin'))
-                            // ->saved(),
                         ])->columns(2)->columnSpan(1),
                     
                 

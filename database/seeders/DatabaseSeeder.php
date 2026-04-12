@@ -19,11 +19,19 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DepartmentSeeder::class,
             RoleSeeder::class,
+            RegionSeeder::class,
+            LocationSeeder::class,
             UserSeeder::class,
             AgencySeeder::class,
             CallLogSeeder::class,
+            ValidCaseNatureSeeder::class,
             ValidCaseSeeder::class,
             SectionSeeder::class,
+            ConsoleSeeder::class,
+            CommandCenterStaffSeeder::class,
+            ShiftReportSeeder::class,
+            CameraAuditSeeder::class,
+            TopicSeeder::class,
         ]);
     }
 }

@@ -32,6 +32,9 @@ class CallLogInfolist
                                         ->numeric(),
                                     TextEntry::make('unanswered_calls')
                                         ->numeric(),
+                                    TextEntry::make('status')
+                                        ->badge(),
+
                                 ]),
                             ]),
                         ]),
@@ -43,10 +46,13 @@ class CallLogInfolist
                                     TextEntry::make('shift'),
                                     TextEntry::make('date'),
                                     TextEntry::make('start_time'),
-                                    TextEntry::make('end_time'), 
+                                    TextEntry::make('end_time'),
+                                    TextEntry::make('creator.name')
+                                        ->label('Created by'), 
+                                    TextEntry::make('editor.name')
+                                        ->label('Edited by'), 
                                     ])->columns(3)->columnSpan(2),
                                 Group::make([
-                                    TextEntry::make('created_by'),
                                     TextEntry::make('created_at')
                                         ->dateTime(),
                                     TextEntry::make('updated_at')
@@ -54,17 +60,6 @@ class CallLogInfolist
                                     ])->columns(3)->columnSpan(2),
                                 ]),
                             ]),
-                Section::make('HOD Review')
-                    ->schema([
-                            TextEntry::make('HOD')
-                                ->label('HOD')
-                                ->badge()
-                                ->color(fn (string $state): string => match ($state) {
-                                    'Pending Review' => 'warning',
-                                    'Reviewed' => 'success',
-                            }),
-
-                        ]),
                     ]);
     }
 }

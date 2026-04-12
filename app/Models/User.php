@@ -5,14 +5,19 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Arr;
+use Mattiverse\Userstamps\Traits\Userstamps;
+use Wirechat\Wirechat\Traits\InteractsWithWirechat;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps;
 
     /**
      * The attributes that are mass assignable.
@@ -51,9 +56,21 @@ class User extends Authenticatable
         ];
     }
 
-    public function role(): BelongsTo
+    public function canAccessWirechatPanel(): bool
     {
-        return $this->belongsTo(Role::class);
+        return true;
+    }
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
+    }
+
+    public function hasRole(string|array $roles): bool
+    {
+        $userRoleNames = $this->roles()->pluck('name')->toArray(); 
+    
+        return !empty(array_intersect(Arr::wrap($roles), $userRoleNames));
     }
 
     public function department(): BelongsTo
