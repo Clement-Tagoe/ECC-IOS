@@ -27,6 +27,7 @@ class AuthPanelProvider extends PanelProvider
             ->default()
             ->id('auth')
             ->path('auth')
+            ->viteTheme('resources/css/filament/auth/theme.css')
             ->login()
             ->colors([
                 'primary' => Color::Amber,

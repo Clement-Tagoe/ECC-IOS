@@ -38,4 +38,9 @@ class MonitoringTask extends Model implements HasMedia
     {
         return $this->belongsToMany(Topic::class, 'monitoring_topics', 'monitoring_task_id', 'topic_id');
     }
+
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
 }

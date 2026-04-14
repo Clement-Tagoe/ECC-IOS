@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('status');
             $table->text('observation');
             $table->foreignId('region_id');
-            $table->string('location');
+            $table->foreignId('location_id');
             $table->text('recommendation');
             $table->timestamps();
         });

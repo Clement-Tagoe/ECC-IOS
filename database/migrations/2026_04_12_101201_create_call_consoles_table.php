@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitoring_topics', function (Blueprint $table) {
+        Schema::create('call_consoles', function (Blueprint $table) {
             $table->id();
-            $table->string('monitoring_task_id');
-            $table->string('topic_id')->constrained();
+            $table->string('console_name');
+            $table->string('status');
+            $table->foreignId('call_staff_id')->nullable()->constrained();
             $table->timestamps();
+            $table->softDeletes();
+            $table->userstamps();
+            $table->userstampSoftDeletes();
         });
     }
 
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitoring_topics');
+        Schema::dropIfExists('call_consoles');
     }
 };

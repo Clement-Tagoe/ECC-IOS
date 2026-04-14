@@ -29,7 +29,8 @@ class MonitoringTaskInfolist
                         TextEntry::make('topics.name')
                             ->label('Topics/Areas of Interest'),
 
-                        TextEntry::make('location'),
+                        TextEntry::make('location.name')
+                            ->label('Location'),
 
                         TextEntry::make('region.name')
                             ->label('Region'),
