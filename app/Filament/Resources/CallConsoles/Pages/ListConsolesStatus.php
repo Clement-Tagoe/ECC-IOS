@@ -30,6 +30,10 @@ class ListConsolesStatus extends Page
                 ->label('Add Console')
                 ->icon('heroicon-o-plus')
                 ->url(CallConsoleResource::getUrl('create')),
+            Action::make('manage')
+                ->label('Manage Consoles')
+                ->icon('heroicon-o-cog')
+                ->url(CallConsoleResource::getUrl('manage')),
         ];
     }
 
@@ -52,13 +56,15 @@ class ListConsolesStatus extends Page
                 ->schema([
                     TextInput::make('console_name')
                             ->unique()
-                            ->required(),
+                            ->required()
+                            ->disabled(),
                         ToggleButtons::make('status')
                             ->options(ConsoleStatus::class)
                             ->inline()
                             ->required()
                             ->live()
-                            ->default(ConsoleStatus::Operational),
+                            ->default(ConsoleStatus::Operational)
+                            ->disabled(),
                         Select::make('call_staff_id')
                             ->relationship('assignee', 'name')
                             ->searchable()

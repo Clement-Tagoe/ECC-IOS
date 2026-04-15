@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\CallConsoles\Schemas;
 
 use App\Enums\ConsoleStatus;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
@@ -16,8 +17,8 @@ class CallConsoleForm
         return $schema
             ->components([
                 Section::make('Console Details')
-                    ->columns(1)
-                    ->columnSpan(1)
+                    ->columns(2)
+                    ->columnSpanFull()
                      ->schema([
                         TextInput::make('console_name')
                             ->unique()
@@ -28,6 +29,10 @@ class CallConsoleForm
                             ->required()
                             ->live()
                             ->default(ConsoleStatus::Operational),
+                        RichEditor::make('notes')
+                            ->helperText('Based on status of console')
+                            ->columnSpanFull()
+                            ->nullable(),
                         Select::make('call_staff_id')
                             ->relationship('assignee', 'name')
                             ->searchable()

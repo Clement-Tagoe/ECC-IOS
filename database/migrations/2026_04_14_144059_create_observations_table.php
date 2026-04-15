@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('camera_audits', function (Blueprint $table) {
+        Schema::create('observations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('region_id');
-            $table->string('camera_name');
-            $table->foreignId('camera_location_id')->nullable();
-            $table->string('status');
-            $table->text('notes')->nullable();
+            $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
+            $table->userstamps();
+            $table->userstampSoftDeletes();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('camera_audits');
+        Schema::dropIfExists('observations');
     }
 };

@@ -10,10 +10,8 @@ class CreateMonitoringTask extends CreateRecord
 {
     protected static string $resource = MonitoringTaskResource::class;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
+    protected function getRedirectUrl(): string
     {
-        $data['user_id'] = Auth::id();
-
-        return $data;
+        return $this->getResource()::getUrl('view', ['record' => $this->getRecord()]);
     }
 }

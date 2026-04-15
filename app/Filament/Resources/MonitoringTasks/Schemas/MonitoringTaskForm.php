@@ -13,6 +13,7 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Support\Facades\Auth;
 
 class MonitoringTaskForm
 {
@@ -52,7 +53,8 @@ class MonitoringTaskForm
                             ->inline()
                             ->required()
                             ->live()
-                            ->default(MonitoringTaskStatus::InReview),
+                            ->default(MonitoringTaskStatus::InReview)
+                            ->disabled(fn () => !Auth::user()->hasRole(['System-Admin', 'Director', 'Unit-Head(Call-Taking)'])),
                         Select::make('location_id')
                             ->relationship('location', 'name')
                             ->createOptionForm([

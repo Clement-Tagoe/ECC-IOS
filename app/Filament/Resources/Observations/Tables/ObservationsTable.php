@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Filament\Resources\CallConsoles\Tables;
+namespace App\Filament\Resources\Observations\Tables;
 
-use App\Enums\ConsoleStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -12,25 +11,16 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class CallConsolesTable
+class ObservationsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('console_name')
+                TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('status')
-                    ->badge()
-                    ->searchable(),
-                TextColumn::make('assignee.name'),
-                TextColumn::make('notes')
-                    ->limit(15)
-                    ->html(),
                 TextColumn::make('creator.name')
                     ->label('Created by')
                     ->searchable()
@@ -56,9 +46,7 @@ class CallConsolesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('status')
-                    ->options(ConsoleStatus::class),
-                TrashedFilter::make(),
+                //
             ])
             ->recordActions([
                 EditAction::make(),

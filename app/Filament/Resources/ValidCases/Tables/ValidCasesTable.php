@@ -52,8 +52,18 @@ class ValidCasesTable
                     ->searchable(),
                 TextColumn::make('validCaseNature.name')
                     ->searchable(),
-                TextColumn::make('created_by')
-                    ->searchable(),
+                TextColumn::make('creator.name')
+                    ->label('Created by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('editor.name')
+                    ->label('Edited by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('destroyer.name')
+                    ->label('Deleted by')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

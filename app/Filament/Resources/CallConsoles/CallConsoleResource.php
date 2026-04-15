@@ -53,6 +53,7 @@ class CallConsoleResource extends Resource
     {
         return [
             'index' => ListConsolesStatus::route('/'),
+            'manage' => ListCallConsoles::route('/manage'),
             'create' => CreateCallConsole::route('/create'),
             'edit' => EditCallConsole::route('/{record}/edit'),
         ];

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\CameraAudits\Schemas;
 
 use App\Enums\CameraStatus;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
@@ -24,28 +25,35 @@ class CameraAuditForm
                             ->required(),
                         TextInput::make('camera_name')
                             ->required(),
-                        TextInput::make('location'),
+                        Select::make('camera_location_id')
+                            ->relationship('cameraLocation', 'name')
+                            ->createOptionForm([
+                                        TextInput::make('name')
+                                            ->unique()
+                                            ->required(),
+                                    ])
+                            ->live()
+                            ->searchable()
+                            ->preload(),
                         ToggleButtons::make('status')
                             ->options(CameraStatus::class)
                             ->inline()
                             ->required()
                             ->live()
                             ->default(CameraStatus::Online),
-                        Select::make('observation')
-                            ->options([
-                                'Blocked_by_trees' => 'Blocked_by_trees',
-                                'Blocked_by_billboards' => 'Blocked_by_billboards',
-                                'Black_&_white' => 'Black_&_white',
-                                'Blur_view' => 'Blur_view',
-                                'Black_view' => 'Black_view',
-                                'Pink_view' => 'Pink_view',
-                                'Repositioning' => 'Repositioning',
-                                'PTZ_control_defect' => 'PTZ_control_defect',
-                                'Weak_signal' => 'Weak_signal',
-                                'Flickering' => 'Flickering',
+                        Select::make('observations')
+                            ->relationship('observations', 'name')
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->unique()
+                                    ->required(),
                             ])
-                            ->multiple(),
-                        TextInput::make('others'),
+                            ->multiple()
+                            ->live()
+                            ->searchable()
+                            ->preload(),
+                        RichEditor::make('notes')
+                            ->columnSpanFull(),
                      ])
             ]);
     }

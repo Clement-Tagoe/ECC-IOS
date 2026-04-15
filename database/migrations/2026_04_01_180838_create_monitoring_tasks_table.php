@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('monitoring_tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->date('date');
             $table->time('time');
             $table->string('shift');
@@ -23,6 +22,9 @@ return new class extends Migration
             $table->foreignId('location_id');
             $table->text('recommendation');
             $table->timestamps();
+            $table->softDeletes();
+            $table->userstamps();
+            $table->userstampSoftDeletes();
         });
     }
 

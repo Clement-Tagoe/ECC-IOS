@@ -25,7 +25,7 @@ class MonitoringTasksTable
                     ->badge(),
                 TextColumn::make('topics.name'),
                 TextColumn::make('region.name'),
-                TextColumn::make('location'),
+                TextColumn::make('location.name'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

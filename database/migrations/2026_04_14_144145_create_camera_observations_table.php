@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('camera_audits', function (Blueprint $table) {
+        Schema::create('camera_observations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('region_id');
-            $table->string('camera_name');
-            $table->foreignId('camera_location_id')->nullable();
-            $table->string('status');
-            $table->text('notes')->nullable();
+            $table->foreignId('camera_audit_id');
+            $table->foreignId('observation_id');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('camera_audits');
+        Schema::dropIfExists('camera_observations');
     }
 };

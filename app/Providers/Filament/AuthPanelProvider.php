@@ -31,6 +31,8 @@ class AuthPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::Amber,
+                'secondary' => Color::Emerald,
+                'auxiliary' => Color::Rose,
             ])
             ->brandName('ECC-IOS')
             ->registration()

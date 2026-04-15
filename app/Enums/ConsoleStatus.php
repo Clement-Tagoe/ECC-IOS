@@ -11,25 +11,27 @@ enum ConsoleStatus: string implements HasColor, HasIcon, HasLabel
 {
     case Operational = 'operational';
 
+    case Maintenance = 'maintenance';
+
     case Faulty = 'faulty';
 
-    case Maintenance = 'maintenance';
+    
 
     public function getLabel(): string
     {
         return match ($this) {
             self::Operational => 'Operational',
-            self::Faulty => 'Faulty',
             self::Maintenance => 'Maintenance',
+            self::Faulty => 'Faulty',
         };
     }
 
     public function getColor(): string
     {
         return match ($this) {
-            self::Operational => 'success',
-            self::Faulty => 'danger',
-            self::Maintenance => 'warning',
+            self::Operational => 'secondary',
+            self::Maintenance => 'primary',
+            self::Faulty => 'auxiliary',
         };
     }
 
@@ -37,8 +39,8 @@ enum ConsoleStatus: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::Operational => Heroicon::ChartBar,
-            self::Faulty => Heroicon::ExclamationTriangle,
             self::Maintenance => Heroicon::Wrench,
+            self::Faulty => Heroicon::ExclamationTriangle,
         };
     }
 }
