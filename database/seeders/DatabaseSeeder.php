@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             ShiftReportSeeder::class,
             CameraAuditSeeder::class,
             TopicSeeder::class,
+            MonitoringStaffSeeder::class,
+            MonitoringConsoleSeeder::class,
         ]);
     }
 }

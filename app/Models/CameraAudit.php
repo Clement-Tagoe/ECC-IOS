@@ -6,11 +6,14 @@ use App\Enums\CameraStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Mattiverse\Userstamps\Traits\Userstamps;
 
 class CameraAudit extends Model
 {
+    use Userstamps, SoftDeletes;
+
     protected $casts = [
-        'observation' => 'array',
         'status' => CameraStatus::class,
     ];
 

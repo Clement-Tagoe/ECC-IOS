@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CameraAudits\Tables;
+namespace App\Filament\Resources\MonitoringStaff\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -15,25 +15,16 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class CameraAuditsTable
+class MonitoringStaffTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('camera_name')
+                TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('region.name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('cameraLocation.name')
-                    ->label('Location')
+                TextColumn::make('group')
                     ->searchable(),
-                TextColumn::make('status')
-                    ->badge(),
-                TextColumn::make('observations.name')
-                    ->label('Observation(s)')
-                    ->limit(10),
                 TextColumn::make('creator.name')
                     ->label('Created by')
                     ->searchable()

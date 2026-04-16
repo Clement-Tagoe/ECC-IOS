@@ -6,6 +6,7 @@ use App\Filament\Resources\CameraAudits\Pages\CreateCameraAudit;
 use App\Filament\Resources\CameraAudits\Pages\EditCameraAudit;
 use App\Filament\Resources\CameraAudits\Pages\ListCameraAudits;
 use App\Filament\Resources\CameraAudits\Schemas\CameraAuditForm;
+use App\Filament\Resources\CameraAudits\Schemas\CameraAuditInfolist;
 use App\Filament\Resources\CameraAudits\Tables\CameraAuditsTable;
 use App\Models\CameraAudit;
 use BackedEnum;
@@ -14,6 +15,8 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CameraAuditResource extends Resource
 {
@@ -37,6 +40,11 @@ class CameraAuditResource extends Resource
         return CameraAuditsTable::configure($table);
     }
 
+    public static function infolist(Schema $schema): Schema
+    {
+        return CameraAuditInfolist::configure($schema);
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -51,5 +59,13 @@ class CameraAuditResource extends Resource
             'create' => CreateCameraAudit::route('/create'),
             'edit' => EditCameraAudit::route('/{record}/edit'),
         ];
+    }
+
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

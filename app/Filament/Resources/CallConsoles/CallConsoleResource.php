@@ -6,7 +6,9 @@ use App\Filament\Resources\CallConsoles\Pages\CreateCallConsole;
 use App\Filament\Resources\CallConsoles\Pages\EditCallConsole;
 use App\Filament\Resources\CallConsoles\Pages\ListCallConsoles;
 use App\Filament\Resources\CallConsoles\Pages\ListConsolesStatus;
+use App\Filament\Resources\CallConsoles\Pages\ViewCallConsole;
 use App\Filament\Resources\CallConsoles\Schemas\CallConsoleForm;
+use App\Filament\Resources\CallConsoles\Schemas\CallConsoleInfolist;
 use App\Filament\Resources\CallConsoles\Tables\CallConsolesTable;
 use App\Models\CallConsole;
 use BackedEnum;
@@ -40,6 +42,11 @@ class CallConsoleResource extends Resource
     public static function table(Table $table): Table
     {
         return CallConsolesTable::configure($table);
+    }
+
+    public static function infolist(Schema $schema): Schema
+    {
+        return CallConsoleInfolist::configure($schema);
     }
 
     public static function getRelations(): array

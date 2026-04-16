@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\CallConsoles\Pages;
+namespace App\Filament\Resources\MonitoringConsoles\Pages;
 
 use App\Enums\ConsoleStatus;
-use App\Filament\Resources\CallConsoles\CallConsoleResource;
-use App\Models\CallConsole;
+use App\Filament\Resources\MonitoringConsoles\MonitoringConsoleResource;
+use App\Models\MonitoringConsole;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -13,14 +13,13 @@ use Filament\Resources\Pages\Page;
 
 class ListConsolesStatus extends Page
 {
+    protected static string $resource = MonitoringConsoleResource::class;
 
-    protected static string $resource = CallConsoleResource::class;
+    protected string $view = 'filament.resources.monitoring-consoles.pages.list-consoles-status';
 
-    protected string $view = 'filament.resources.call-consoles.pages.list-consoles-status';
-    
     public function getTitle(): string
     {
-        return 'Call Consoles Status';
+        return 'Monitoring Consoles Status';
     }
 
     protected function getHeaderActions(): array
@@ -29,22 +28,22 @@ class ListConsolesStatus extends Page
             Action::make('create')
                 ->label('Add Console')
                 ->icon('heroicon-o-plus')
-                ->url(CallConsoleResource::getUrl('create')),
+                ->url(MonitoringConsoleResource::getUrl('create')),
             Action::make('manage')
                 ->label('Manage Consoles')
                 ->icon('heroicon-o-cog')
-                ->url(CallConsoleResource::getUrl('manage')),
+                ->url(MonitoringConsoleResource::getUrl('manage')),
         ];
     }
 
     public function getConsoles()
     {
-        return CallConsole::all();
+        return MonitoringConsole::all();
     }
 
     public function getAssignmentCount()
     {
-        [$assigned, $unassigned] = $this->getConsoles()->partition(fn($c) => $c->call_staff_id !== null);
+        [$assigned, $unassigned] = $this->getConsoles()->partition(fn($c) => $c->monitoring_staff_id !== null);
 
         // Create a simple array for the loop
         $counts = [
@@ -60,8 +59,8 @@ class ListConsolesStatus extends Page
        return Action::make('edit')
                 ->icon('heroicon-m-pencil-square')
                 ->color('gray')
-                ->record(fn (array $arguments) => CallConsole::find($arguments['console']))
-                ->fillForm(fn (CallConsole $record): array => [
+                ->record(fn (array $arguments) => MonitoringConsole::find($arguments['console']))
+                ->fillForm(fn (MonitoringConsole $record): array => [
                     'console_name' => $record->console_name,
                     'status' => $record->status,
                     'call_staff_id' => $record->call_staff_id,
@@ -78,7 +77,7 @@ class ListConsolesStatus extends Page
                             ->live()
                             ->default(ConsoleStatus::Operational)
                             ->disabled(),
-                        Select::make('call_staff_id')
+                        Select::make('monitoring_staff_id')
                             ->relationship('assignee', 'name')
                             ->searchable()
                             ->preload()
@@ -86,7 +85,7 @@ class ListConsolesStatus extends Page
                             ->nullable()
                             ->placeholder('Unassigned'),
                 ])
-                ->action(function (array $data, CallConsole $record):void {
+                ->action(function (array $data, MonitoringConsole $record):void {
                     $record->update($data);
                 });
     }

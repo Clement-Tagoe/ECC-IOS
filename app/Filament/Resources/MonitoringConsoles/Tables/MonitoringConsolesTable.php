@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\CameraAudits\Tables;
+namespace App\Filament\Resources\MonitoringConsoles\Tables;
 
+use App\Enums\ConsoleStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -12,28 +13,25 @@ use Filament\Actions\RestoreAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class CameraAuditsTable
+class MonitoringConsolesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('camera_name')
-                    ->searchable(),
-                TextColumn::make('region.name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('cameraLocation.name')
-                    ->label('Location')
+                 TextColumn::make('console_name')
                     ->searchable(),
                 TextColumn::make('status')
-                    ->badge(),
-                TextColumn::make('observations.name')
-                    ->label('Observation(s)')
-                    ->limit(10),
+                    ->badge()
+                    ->searchable(),
+                TextColumn::make('assignee.name'),
+                TextColumn::make('notes')
+                    ->limit(15)
+                    ->html(),
                 TextColumn::make('creator.name')
                     ->label('Created by')
                     ->searchable()
@@ -59,6 +57,8 @@ class CameraAuditsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                SelectFilter::make('status')
+                    ->options(ConsoleStatus::class),
                 TrashedFilter::make(),
             ])
             ->recordActions([

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CallStaff\Schemas;
+namespace App\Filament\Resources\MonitoringStaff\Schemas;
 
 
 use Filament\Infolists\Components\TextEntry;
@@ -9,7 +9,7 @@ use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class CallStaffInfolist
+class MonitoringStaffInfolist
 {
     public static function configure(Schema $schema): Schema
     {
