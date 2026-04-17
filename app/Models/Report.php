@@ -45,4 +45,9 @@ class Report extends Model implements HasMedia
     {
         return $this->hasMany(ReportComment::class);
     }
+
+    public function task(): BelongsTo
+    {
+        return $this->belongsTo(Task::class);
+    }
 }

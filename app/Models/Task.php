@@ -6,9 +6,15 @@ use App\Enums\TaskPriority;
 use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
+use Kirschbaum\Commentions\HasComments;
 
 class Task extends Model
 {
+    use HasComments;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -22,8 +28,13 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function collaborators()
+    public function collaborators(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'task_collaborator');
+        return $this->belongsToMany(User::class, 'task_collaborator', 'task_id', 'user_id')->where('users.id', '!=', Auth::user()->id);
+    }
+
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Report::class, 'task_id');
     }
 }

@@ -3,11 +3,14 @@
 namespace App\Filament\Resources\Tasks\Schemas;
 
 use App\Enums\TaskStatus;
+use App\Models\Task;
+use App\Models\User;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
+use Kirschbaum\Commentions\Filament\Infolists\Components\CommentsEntry;
 
 class TaskInfolist
 {
@@ -16,11 +19,11 @@ class TaskInfolist
         return $schema
             ->components([
                 Section::make('Task Details')
-                    ->columns(2)
+                    ->columns(3)
                     ->columnSpanFull()
                     ->schema([
                         TextEntry::make('title')
-                            ->label('Report Title')
+                            ->label('Task Title')
                             ->weight(FontWeight::Bold),
                         
                         TextEntry::make('due_date'),
@@ -46,10 +49,13 @@ class TaskInfolist
                         TextEntry::make('description')
                             ->html()
                             ->columnSpanFull(),
-
                     ]),
-
-                
+                Section::make()
+                    ->columnSpanFull()
+                    ->schema([
+                        CommentsEntry::make('comments')
+                            ->mentionables(fn (Task $record) => User::all()),
+                    ]),
                 ]);
     }
 }

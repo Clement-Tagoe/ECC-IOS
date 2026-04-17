@@ -4,6 +4,9 @@ namespace App\Providers\Wirechat;
 
 use Wirechat\Wirechat\Panel;
 use Wirechat\Wirechat\PanelProvider;
+use Wirechat\Wirechat\Support\Enums\EmojiPickerPosition;
+use Wirechat\Wirechat\Support\Enums\UnreadIndicatorType;
+
 
 class ChatsPanelProvider extends PanelProvider
 {
@@ -13,6 +16,20 @@ class ChatsPanelProvider extends PanelProvider
              ->id('chats')
              ->path('chats')
              ->middleware(['web','auth'])
-             ->default();
+             ->default()
+             ->chatsSearch()
+             ->createChatAction()
+             ->createGroupAction()
+             ->clearChatAction()
+             ->deleteChatAction()
+             ->deleteMessageActions()
+             ->unreadIndicator(type: UnreadIndicatorType::Count)
+             ->emojiPicker(position: EmojiPickerPosition::Docked)
+             ->attachments()
+             ->default()
+             ->webPushNotifications()
+             ->messagesQueue('messages')
+             ->eventsQueue('default')
+             ->fileMimes(['zip', 'rar', 'txt', 'pdf', 'docx', 'doc', 'xlsx', 'xls', 'pptx', 'ppt']);
     }
 }

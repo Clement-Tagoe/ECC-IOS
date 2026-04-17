@@ -41,7 +41,7 @@ class TaskForm
                             ->inline()
                             ->required()
                             ->live()
-                            ->default(TaskStatus::Todo)
+                            ->default(TaskStatus::InProgress)
                             ->columnSpanFull(),
 
                         Radio::make('priority')

@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             ValidCaseSeeder::class,
             CallStaffSeeder::class,
             CallConsoleSeeder::class,
-            ShiftReportSeeder::class,
             CameraAuditSeeder::class,
             TopicSeeder::class,
             MonitoringStaffSeeder::class,

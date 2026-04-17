@@ -45,7 +45,7 @@ class ReportResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ReportCommentsRelationManager::class,
+            //
         ];
     }
 

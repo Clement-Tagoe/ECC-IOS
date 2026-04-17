@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\CallLogs\Schemas;
+namespace App\Filament\Resources\Users\Schemas;
 
 
 use Filament\Infolists\Components\TextEntry;

@@ -11,10 +11,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
+use Kirschbaum\Commentions\Contracts\Commenter;
 use Mattiverse\Userstamps\Traits\Userstamps;
+use Wirechat\Wirechat\Panel;
+use Wirechat\Wirechat\Contracts\WirechatUser;
 use Wirechat\Wirechat\Traits\InteractsWithWirechat;
 
-class User extends Authenticatable
+class User extends Authenticatable implements WirechatUser, Commenter
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps;
@@ -56,10 +59,26 @@ class User extends Authenticatable
         ];
     }
 
-    public function canAccessWirechatPanel(): bool
+    public function canAccessWirechatPanel(Panel $panel): bool
     {
         return true;
     }
+
+    public function canCreateChats(): bool
+    {
+        return true;
+    }
+
+    public function canCreateGroups(): bool
+    {
+        return true;
+    }
+
+    public function getWirechatAvatarUrlAttribute(): string
+    {
+        return $this->avatar_url ?? asset('images/default-avatar.png');
+    }
+
 
     public function roles(): BelongsToMany
     {
