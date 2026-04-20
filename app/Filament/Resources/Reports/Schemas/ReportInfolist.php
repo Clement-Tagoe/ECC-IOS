@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Reports\Schemas;
 
+use App\Models\Report;
+use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\RepeatableEntry;
@@ -11,6 +13,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
 use Illuminate\Support\Str;
+use Kirschbaum\Commentions\Filament\Infolists\Components\CommentsEntry;
 
 class ReportInfolist
 {
@@ -130,7 +133,16 @@ class ReportInfolist
                                 ->getStateUsing(function ($record) {
                                     return $record->media->where('collection_name', 'report-files');
                                 }),
-                    ])
+                    ]),
+                
+                Section::make()
+                    ->columnSpanFull()
+                    ->schema([
+                        CommentsEntry::make('comments')
+                            ->mentionables(fn (Report $record) => User::all()),
+                    ]),
                 ]);
+
+                
     }
 }

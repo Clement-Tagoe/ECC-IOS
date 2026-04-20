@@ -39,6 +39,8 @@ class AuthPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
                 'secondary' => Color::Emerald,
                 'auxiliary' => Color::Rose,
+                'tertiary' => Color::Purple,
+                'nonary' => Color::Teal,
             ])
             ->brandName('ECC-IOS')
             ->registration()
@@ -51,7 +53,6 @@ class AuthPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->renderHook(
                 PanelsRenderHook::HEAD_END,
