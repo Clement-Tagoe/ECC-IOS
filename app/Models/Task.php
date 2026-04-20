@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Kirschbaum\Commentions\HasComments;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Task extends Model
+class Task extends Model implements HasMedia
 {
-    use HasComments;
+    use HasComments, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -30,11 +32,11 @@ class Task extends Model
     
     public function collaborators(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'task_collaborator', 'task_id', 'user_id')->where('users.id', '!=', Auth::user()->id);
+        return $this->belongsToMany(User::class, 'task_collaborator', 'task_id', 'user_id'); // ->where('users.id', '!=', Auth::user()->id)
     }
 
     public function reports(): HasMany
     {
-        return $this->hasMany(Report::class, 'task_id');
+        return $this->hasMany(Report::class);
     }
 }

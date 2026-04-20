@@ -10,6 +10,8 @@ use Filament\Actions\ViewAction;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Kirschbaum\Commentions\Filament\Actions\CommentsAction;
 
 class TasksTable
@@ -17,6 +19,15 @@ class TasksTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function ($query) {
+                return $query->where(function (Builder $q) {
+                    $q->where('user_id', Auth::id())
+                    ->orWhereHas('collaborators', function (Builder $q) {
+                        $q->where('users.id', Auth::id());
+                    });
+                });
+            })
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('user.name')
                     ->label('Assigned By')
