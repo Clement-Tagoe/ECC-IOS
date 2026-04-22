@@ -123,7 +123,8 @@ class TasksTable
                 ViewAction::make(),
                 EditAction::make(),
                 CommentsAction::make()
-                    ->mentionables(User::all()),
+                    ->mentionables(User::all())
+                    ->perPage(10),
                 DeleteAction::make(),
                 ForceDeleteAction::make(),
                 RestoreAction::make(),

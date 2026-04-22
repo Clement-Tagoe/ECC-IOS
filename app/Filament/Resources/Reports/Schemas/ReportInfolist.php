@@ -139,7 +139,8 @@ class ReportInfolist
                     ->columnSpanFull()
                     ->schema([
                         CommentsEntry::make('comments')
-                            ->mentionables(fn (Report $record) => User::all()),
+                            ->mentionables(fn (Report $record) => User::all())
+                            ->perPage(8),
                     ]),
                 ]);
 

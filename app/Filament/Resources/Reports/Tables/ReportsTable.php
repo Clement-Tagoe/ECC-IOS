@@ -36,7 +36,7 @@ class ReportsTable
             ->modifyQueryUsing(function ($query) {
                     return $query->where(function (Builder $q) {
                         $q->where('user_id', Auth::id())
-                        ->orWhereHas('collaborators', function (Builder $q) {
+                        ->orWhereHas('receivers', function (Builder $q) {
                             $q->where('users.id', Auth::id());
                         });
                     });
@@ -127,7 +127,8 @@ class ReportsTable
                 ViewAction::make(),
                 EditAction::make(),
                 CommentsAction::make()
-                    ->mentionables(User::all()),
+                    ->mentionables(User::all())
+                    ->perPage(10),
                 DeleteAction::make(),
                 ForceDeleteAction::make(),
                 RestoreAction::make(),

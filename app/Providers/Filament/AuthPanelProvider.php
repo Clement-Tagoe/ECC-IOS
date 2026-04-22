@@ -20,6 +20,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Kirschbaum\Commentions\CommentionsPlugin;
 use Wirechat\Wirechat\Facades\Wirechat;
 
 class AuthPanelProvider extends PanelProvider
@@ -43,8 +44,12 @@ class AuthPanelProvider extends PanelProvider
                 'nonary' => Color::Teal,
             ])
             ->brandName('ECC-IOS')
+            ->databaseNotifications()
             ->registration()
             ->profile()
+            ->plugins([
+                CommentionsPlugin::make(),
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

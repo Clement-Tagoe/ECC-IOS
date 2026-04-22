@@ -54,7 +54,8 @@ class TaskInfolist
                     ->columnSpanFull()
                     ->schema([
                         CommentsEntry::make('comments')
-                            ->mentionables(fn (Task $record) => User::all()),
+                            ->mentionables(fn (Task $record) => User::all())
+                            ->perPage(8),
                     ]),
                 ]);
     }

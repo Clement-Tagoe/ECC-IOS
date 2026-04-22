@@ -20,7 +20,8 @@ class ReportPolicy
      */
     public function view(User $user, Report $report): bool
     {
-        return $user->id === $report->user_id || $report->collaborators->contains($user->id);
+        return $user->id === $report->user_id || $report->receivers->contains($user->id);
+        // in_array($user->id, $report->notified_user_ids ?? []
     }
 
     /**
@@ -36,7 +37,7 @@ class ReportPolicy
      */
     public function update(User $user, Report $report): bool
     {
-        return $user->id === $report->user_id || $report->collaborators->contains($user->id);
+        return $user->id === $report->user_id;
     }
 
     /**

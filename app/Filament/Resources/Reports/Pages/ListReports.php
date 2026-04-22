@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Reports\Pages;
 
 use App\Filament\Resources\Reports\ReportResource;
+use App\Models\Report;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;
@@ -23,11 +24,16 @@ class ListReports extends ListRecords
     public function getTabs(): array
     {
         return [
-            'all' => Tab::make(),
+            'all' => Tab::make()
+                ->icon('heroicon-o-envelope'),
             'inbox' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->whereHas('receivers', fn ($q) => $q->where('users.id', Auth::id()))),
+                ->icon('heroicon-o-inbox-arrow-down')
+                ->modifyQueryUsing(fn (Builder $query) => $query->whereHas('receivers', fn ($q) => $q->where('users.id', Auth::id())))
+                ->badge(Report::query()->whereHas('receivers', fn ($q) => $q->where('users.id', Auth::id()))->count()),
             'outbox' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('user_id', Auth::id())),
+                ->icon('heroicon-o-inbox-stack')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('user_id', Auth::id()))
+                ->badge(Report::query()->where('user_id', Auth::id())->count()),
         ];
     }
 }

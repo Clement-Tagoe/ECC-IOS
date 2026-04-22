@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Reports\Schemas;
 
 use App\Enums\ReportPriority;
 use App\Enums\ReportStatus;
+use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\RichEditor;
@@ -13,6 +14,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ReportForm
 {
@@ -36,6 +39,7 @@ class ReportForm
                                 'Analysis' => 'Analysis',
                                 'Field' => 'Field',
                                 'Evaluation' => 'Evaluation',
+                                'Situational' => 'Situational'
                             ])
                             ->required(),
                         Select::make('shift')
@@ -68,7 +72,10 @@ class ReportForm
                             ->nullable(),
                         Select::make('receivers')
                             ->label('Send To (Receivers)')
-                            ->relationship('receivers', 'name')   // assuming User has 'name' column
+                            ->relationship(
+                                name: 'receivers', 
+                                titleAttribute: 'name',
+                                modifyQueryUsing: fn (Builder $query) => $query->where('users.id', '!=',Auth::id()))   // assuming User has 'name' column
                             ->multiple()
                             ->searchable()
                             ->preload()

@@ -14,6 +14,8 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class TaskForm
 {
@@ -31,7 +33,11 @@ class TaskForm
 
                         Select::make('assigned_to')
                             ->label('Assign to (Collaborators)')
-                            ->relationship('collaborators', 'name')
+                            ->relationship(
+                                name: 'collaborators', 
+                                titleAttribute: 'name',
+                                modifyQueryUsing: fn (Builder $query) =>  $query->whereNot('users.id', Auth::id())
+                                ) 
                             ->multiple()
                             ->searchable()
                             ->preload(),

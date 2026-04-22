@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kirschbaum\Commentions\Contracts\Commenter;
 use Kirschbaum\Commentions\HasComments;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Report extends Model implements HasMedia
+class Report extends Model implements HasMedia, Commenter
 {
     use InteractsWithMedia, SoftDeletes, HasComments;
 
@@ -28,14 +29,14 @@ class Report extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function receivers()
-    {
-        return $this->belongsToMany(User::class, 'report_user');
-    }
-
     public function collaborators()
     {
         return $this->belongsToMany(User::class, 'report_collaborator');
+    }
+
+    public function receivers()
+    {
+        return $this->belongsToMany(User::class, 'report_user');
     }
 
     public function department(): BelongsTo

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class TaskChart extends ChartWidget
 {
     protected ?string $heading = 'Task Chart';
-    
+
     protected static ?int $sort = 6;
 
     protected function getData(): array
@@ -39,6 +39,8 @@ class TaskChart extends ChartWidget
                     'label' => 'My Completed Tasks',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                     'fill' => 'start',
+                    'borderColor' => '#4b0c64ff', 
+                    'backgroundColor' => 'rgba(60, 8, 90, 0.2)',
                 ],
             ],
             'labels' => $data->map(fn (TrendValue $value) => $value->date),

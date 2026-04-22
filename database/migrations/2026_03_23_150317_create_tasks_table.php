@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('status')->default('backlog');
             $table->string('priority')->default('medium');
-            $table->date('due_date')->nullable();
+            $table->date('due_date');
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
