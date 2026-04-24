@@ -22,7 +22,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Day',
             'start_time' => '07:00:00',
             'end_time' => '19:00:00',
-            'date' => '2026-03-20'
+            'date' => '2026-04-20'
         ]);
 
         CallLog::create([
@@ -35,7 +35,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Day',
             'start_time' => '07:00:00',
             'end_time' => '19:00:00',
-            'date' => '2026-03-21'
+            'date' => '2026-04-21'
         ]);
 
         CallLog::create([
@@ -48,7 +48,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Night',
             'start_time' => '19:00:00',
             'end_time' => '07:00:00',
-            'date' => '2026-03-21'
+            'date' => '2026-04-21'
         ]);
 
         CallLog::create([
@@ -61,7 +61,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Day',
             'start_time' => '07:00:00',
             'end_time' => '19:00:00',
-            'date' => '2026-03-22'
+            'date' => '2026-04-22'
         ]);
 
         CallLog::create([
@@ -74,7 +74,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Night',
             'start_time' => '19:00:00',
             'end_time' => '07:00:00',
-            'date' => '2026-03-22'
+            'date' => '2026-04-22'
         ]);
 
         CallLog::create([
@@ -87,7 +87,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Day',
             'start_time' => '07:00:00',
             'end_time' => '19:00:00',
-            'date' => '2026-03-23'
+            'date' => '2026-04-23'
         ]);
 
         CallLog::create([
@@ -100,7 +100,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Night',
             'start_time' => '19:00:00',
             'end_time' => '07:00:00',
-            'date' => '2026-03-23'
+            'date' => '2026-04-23'
         ]);
 
         CallLog::create([
@@ -113,7 +113,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Day',
             'start_time' => '07:00:00',
             'end_time' => '19:00:00',
-            'date' => '2026-03-24'
+            'date' => '2026-04-24'
         ]);
 
         CallLog::create([
@@ -126,7 +126,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Night',
             'start_time' => '19:00:00',
             'end_time' => '07:00:00',
-            'date' => '2026-03-24'
+            'date' => '2026-04-24'
         ]);
 
         CallLog::create([
@@ -139,7 +139,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Day',
             'start_time' => '07:00:00',
             'end_time' => '19:00:00',
-            'date' => '2026-03-25'
+            'date' => '2026-04-22'
         ]);
 
         CallLog::create([
@@ -152,7 +152,7 @@ class CallLogSeeder extends Seeder
             'shift' => 'Night',
             'start_time' => '19:00:00',
             'end_time' => '07:00:00',
-            'date' => '2026-03-25'
+            'date' => '2026-04-22'
         ]);
     }
 }

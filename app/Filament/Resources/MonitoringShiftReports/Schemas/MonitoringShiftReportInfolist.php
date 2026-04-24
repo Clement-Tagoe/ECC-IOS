@@ -31,6 +31,8 @@ class MonitoringShiftReportInfolist
                                 ->numeric(), 
                             TextEntry::make('unoccupied_consoles')
                                 ->numeric(), 
+                            TextEntry::make('status')
+                                ->badge(),
                             TextEntry::make('notes')
                                 ->html()
                                 ->columnSpanFull()

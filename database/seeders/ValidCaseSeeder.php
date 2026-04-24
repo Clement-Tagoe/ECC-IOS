@@ -15,7 +15,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000001',
             'reporting_time' => '08:15:00',
-            'reporting_date' => '2025-01-05',
+            'reporting_date' => '2026-04-20',
             'agency_id' => 1,
             'region_id' => 1,
             'location_id' => 1,
@@ -30,7 +30,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000002',
             'reporting_time' => '09:30:00',
-            'reporting_date' => '2025-01-05',
+            'reporting_date' => '2026-04-20',
             'agency_id' => 2,
             'region_id' => 2,
             'location_id' => 2,
@@ -45,7 +45,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000003',
             'reporting_time' => '11:45:00',
-            'reporting_date' => '2025-01-05',
+            'reporting_date' => '2026-04-21',
             'agency_id' => 3,
             'region_id' => 4,
             'location_id' => 3,
@@ -60,7 +60,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000004',
             'reporting_time' => '13:20:00',
-            'reporting_date' => '2025-01-05',
+            'reporting_date' => '2026-04-21',
             'agency_id' => 4,
             'region_id' => 2,
             'location_id' => 4,
@@ -75,7 +75,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000005',
             'reporting_time' => '15:00:00',
-            'reporting_date' => '2025-01-04',
+            'reporting_date' => '2026-04-22',
             'agency_id' => 1,
             'region_id' => 3,
             'location_id' => 5,
@@ -90,7 +90,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000050',
             'reporting_time' => '22:10:00',
-            'reporting_date' => '2025-01-04',
+            'reporting_date' => '2026-04-22',
             'agency_id' => 4,
             'region_id' => 3,
             'location_id' => 5,
@@ -105,7 +105,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000001', 
             'reporting_time' => '08:15:22', 
-            'reporting_date' => '2025-01-04', 
+            'reporting_date' => '2026-04-23', 
             'agency_id' => 1, 
             'region_id' => 1, 
             'location_id' => 1,
@@ -121,7 +121,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000002', 
             'reporting_time' => '14:42:10', 
-            'reporting_date' => '2025-01-04', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 3, 
             'region_id' => 2, 
             'location_id' => 2, 
@@ -136,7 +136,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000003', 
             'reporting_time' => '03:18:45', 
-            'reporting_date' => '2025-01-04', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 2, 
             'region_id' => 4, 
             'location_id' => 3,
@@ -151,7 +151,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000004', 
             'reporting_time' => '11:05:33', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 4, 
             'region_id' => 1, 
             'location_id' => 1, 
@@ -166,7 +166,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000005', 
             'reporting_time' => '09:22:17', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 3, 
             'region_id' => 4, 
             'location_id' => 3, 
@@ -181,7 +181,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000006', 
             'reporting_time' => '22:47:09', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 1, 
             'region_id' => 3, 
             'location_id' => 5,
@@ -196,7 +196,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000007', 
             'reporting_time' => '16:30:55', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-20', 
             'agency_id' => 2, 
             'region_id' => 4, 
             'location_id' => 3, 
@@ -211,7 +211,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000008', 
             'reporting_time' => '06:12:40', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-20', 
             'agency_id' => 4, 
             'region_id' => 1, 
             'location_id' =>1,
@@ -226,7 +226,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000009', 
             'reporting_time' => '19:08:21', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-21', 
             'agency_id' => 3, 
             'region_id' => 3, 
             'location_id' => 5,
@@ -241,7 +241,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000010', 
             'reporting_time' => '13:55:00', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-22', 
             'agency_id' => 1, 
             'region_id' => 4, 
             'location_id' => 3, 
@@ -256,7 +256,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000011',
             'reporting_time' => '04:22:33', 
-            'reporting_date' => '2025-01-03', 
+            'reporting_date' => '2026-04-19', 
             'agency_id' => 2, 
             'region_id' => 2, 
             'location_id' => 2, 
@@ -271,7 +271,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000012', 
             'reporting_time' => '10:40:19', 
-            'reporting_date' => '2025-01-02', 
+            'reporting_date' => '2026-04-19', 
             'agency_id' => 4, 
             'region_id' => 1, 
             'status' => 'reviewed',
@@ -286,7 +286,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000013', 
             'reporting_time' => '21:17:44', 
-            'reporting_date' => '2025-01-02', 
+            'reporting_date' => '2026-04-22', 
             'agency_id' => 1, 
             'region_id' => 4, 
             'location_id' => 3,
@@ -301,7 +301,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000014', 
             'reporting_time' => '07:33:12', 
-            'reporting_date' => '2025-01-02', 
+            'reporting_date' => '2026-04-23', 
             'agency_id' => 3, 
             'region_id' => 2, 
             'location_id' => 4,
@@ -316,7 +316,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000015', 
             'reporting_time' => '18:09:56', 
-            'reporting_date' => '2025-01-02', 
+            'reporting_date' => '2026-04-22', 
             'agency_id' => 2, 
             'region_id' => 3, 
             'location_id' => 5, 
@@ -331,7 +331,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000016', 
             'reporting_time' => '12:25:47',
-            'reporting_date' => '2025-01-02', 
+            'reporting_date' => '2026-04-20', 
             'agency_id' => 4, 
             'region_id' => 1, 
             'location_id' => 1, 
@@ -346,7 +346,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000017', 
             'reporting_time' => '05:50:11', 
-            'reporting_date' => '2025-01-02', 
+            'reporting_date' => '2026-04-22', 
             'agency_id' => 1, 
             'region_id' => 2, 
             'location_id' => 2, 
@@ -361,7 +361,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000018', 
             'reporting_time' => '15:14:29', 
-            'reporting_date' => '2025-01-01', 
+            'reporting_date' => '2026-04-20', 
             'agency_id' => 3, 
             'region_id' => 4, 
             'location_id' => 3, 
@@ -376,7 +376,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000019', 
             'reporting_time' => '23:41:03', 
-            'reporting_date' => '2025-01-01', 
+            'reporting_date' => '2026-04-23', 
             'agency_id' => 2, 
             'region_id' => 1, 
             'location_id' => 1, 
@@ -391,7 +391,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000020', 
             'reporting_time' => '09:07:38', 
-            'reporting_date' => '2025-01-01', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 4, 
             'region_id' => 3, 
             'location_id' => 5, 
@@ -406,7 +406,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000048', 
             'reporting_time' => '17:55:12', 
-            'reporting_date' => '2025-01-01', 
+            'reporting_date' => '2026-04-21', 
             'agency_id' => 1, 
             'region_id' => 4, 
             'location_id' => 3,
@@ -421,7 +421,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000049', 
             'reporting_time' => '02:18:09', 
-            'reporting_date' => '2025-01-01', 
+            'reporting_date' => '2026-04-24', 
             'agency_id' => 2, 
             'region_id' => 2, 
             'location_id' => 2, 
@@ -436,7 +436,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000050', 
             'reporting_time' => '13:40:22', 
-            'reporting_date' => '2025-01-01', 
+            'reporting_date' => '2026-04-23', 
             'agency_id' => 3, 
             'region_id' => 2, 
             'location_id' => 4,

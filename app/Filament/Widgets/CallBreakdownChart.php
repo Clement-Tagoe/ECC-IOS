@@ -17,7 +17,7 @@ class CallBreakdownChart extends ChartWidget
     {
         $days = collect(range(6, 0))->map(fn ($d) => now()->subDays($d)->toDateString());
  
-        $logs = CallLog::where('date', now()->subDays(7))
+        $logs = CallLog::where('date', '>', now()->subDays(7))
             ->orderBy('date')
             ->get()
             ->keyBy(fn ($row) => Carbon::parse($row->date)->toDateString());

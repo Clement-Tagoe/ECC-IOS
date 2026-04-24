@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Region;
 use App\Models\ValidCase;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
@@ -15,18 +16,29 @@ class CasesByRegionChart extends ChartWidget
 
     protected function getData(): array
     {
-        $data = ValidCase::where('reporting_date', '>' , now()->subDays(7))
+        // Get today's case counts keyed by region_id
+        $caseCounts = ValidCase::where('reporting_date', '>', now()->subDays(7))
             ->select('region_id', DB::raw('count(*) as total'))
-            ->with('region')
             ->groupBy('region_id')
-            ->orderByDesc('total')
-            ->get();
+            ->pluck('total', 'region_id');
  
-        $labels = $data->map(fn ($row) => $row->region?->name ?? "Region {$row->region_id}")->toArray();
-        $values = $data->pluck('total')->toArray();
+        // Fetch ALL regions, regardless of whether they have cases today
+        $regions = Region::orderBy('name')->get();
  
-        // Generate a shade of blue per bar
-        $colors = collect($values)->map(fn ($_, $i) => 'rgba(29, 78, 216, ' . round(0.4 + ($i / max(count($values) - 1, 1)) * 0.6, 2) . ')')->toArray();
+        $labels = [];
+        $values = [];
+ 
+        foreach ($regions as $region) {
+            $labels[] = $region->name;
+            $values[] = $caseCounts->get($region->id, 0);
+        }
+ 
+        // Colour bars with data in solid blue, zero-count bars in muted grey
+        $colors = collect($values)->map(
+            fn ($v) => $v > 0
+                ? 'rgba(29, 78, 216, 0.85)'
+                : 'rgba(156, 163, 175, 0.4)'
+        )->toArray();
  
         return [
             'datasets' => [

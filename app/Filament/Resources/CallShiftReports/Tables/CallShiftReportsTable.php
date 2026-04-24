@@ -38,6 +38,14 @@ class CallShiftReportsTable
                 TextColumn::make('status')
                     ->badge()
                     ->searchable(),
+                TextColumn::make('start_time')
+                    ->time()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('end_time')
+                    ->time()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('expected_attendance')
                     ->numeric()
                     ->sortable(),

@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\CallLog;
+use App\Models\CallShiftReport;
 use App\Models\ValidCase;
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget;
@@ -18,6 +19,7 @@ class CallStatsOverview extends StatsOverviewWidget
         $dayTrend = $totalValidCasesYesterday > 0
             ? round((($totalValidCases - $totalValidCasesYesterday) / $totalValidCasesYesterday) * 100, 1)
             : 0;
+
         // Sum each column for records matching today's date
         $stats = CallLog::whereDate('date', Carbon::today())
             ->selectRaw('
@@ -57,6 +59,23 @@ class CallStatsOverview extends StatsOverviewWidget
             ? round((($total - $prevTotal) / $prevTotal) * 100, 1)
             : 0;
 
+        $todayReports = CallShiftReport::where('date', Carbon::today())->get();
+ 
+        $totalExpected  = $todayReports->sum('expected_attendance');
+        $totalPresent   = $todayReports->sum('present');
+        $totalAbsent    = $todayReports->sum('absent');
+
+        $attendanceRate = $totalExpected > 0
+            ? round(($totalPresent / $totalExpected) * 100, 1)
+            : 0;
+        
+        $last7Attendance = collect(range(6, 0))->map(function ($daysAgo) {
+            $reports = CallShiftReport::whereDate('date', today()->subDays($daysAgo))->get();
+            $expected = $reports->sum('expected_attendance');
+            $present  = $reports->sum('present');
+            return $expected > 0 ? round(($present / $expected) * 100) : 0;
+        })->toArray();
+
         return [
            Stat::make('Total Valid Cases', $totalValidCases)
                 ->description($dayTrend >= 0
@@ -91,6 +110,20 @@ class CallStatsOverview extends StatsOverviewWidget
                 ->color('primary')
                 ->chart([14, 10, 3, 7, 6, 9, 4, 10]),
             // Stat::make('Unanswered Calls', $stats->unanswered ?? 0),
+            Stat::make('Expected Attendance', number_format($totalExpected))
+                ->description('Across all shifts today')
+                ->descriptionIcon('heroicon-m-users')
+                ->color('gray'),
+            Stat::make('Staff Present', number_format($totalPresent))
+                ->description("{$attendanceRate}% attendance rate")
+                ->descriptionIcon('heroicon-m-check-badge')
+                ->color($attendanceRate >= 85 ? 'success' : ($attendanceRate >= 70 ? 'warning' : 'danger'))
+                ->chart($last7Attendance),
+ 
+            Stat::make('Staff Absent', number_format($totalAbsent))
+                ->description(round(100 - $attendanceRate, 1) . '% absence rate today')
+                ->descriptionIcon('heroicon-m-x-mark')
+                ->color($totalAbsent > 5 ? 'danger' : 'warning'),
             
         ];
     }
