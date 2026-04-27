@@ -15,6 +15,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class RegionResource extends Resource
 {
@@ -23,6 +24,8 @@ class RegionResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::GlobeEuropeAfrica;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static string | UnitEnum | null $navigationGroup = 'Others';
 
     public static function form(Schema $schema): Schema
     {

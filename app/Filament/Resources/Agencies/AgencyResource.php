@@ -24,7 +24,7 @@ class AgencyResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | UnitEnum | null $navigationGroup = 'General';
+    protected static string | UnitEnum | null $navigationGroup = 'Others';
 
     public static function form(Schema $schema): Schema
     {

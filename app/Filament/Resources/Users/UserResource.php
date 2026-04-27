@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Users;
 
-use App\Filament\Resources\CallLogs\Schemas\UserInfolist;
+use App\Filament\Resources\Users\Schemas\UserInfolist;
 use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
@@ -26,7 +26,7 @@ class UserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static string | UnitEnum | null $navigationGroup = 'General';
+    protected static string | UnitEnum | null $navigationGroup = 'Others';
 
     public static function form(Schema $schema): Schema
     {
