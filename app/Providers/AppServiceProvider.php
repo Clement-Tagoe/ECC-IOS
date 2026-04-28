@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
+use App\Observers\MessageObserver;
 use Illuminate\Support\ServiceProvider;
-use App\Listeners\SendWirechatDatabaseNotification;
-use Illuminate\Support\Facades\Event;
-use Wirechat\Wirechat\Events\MessageCreated;
+use Wirechat\Wirechat\Models\Message;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,9 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(
-            MessageCreated::class,
-            SendWirechatDatabaseNotification::class,
-        );
+        Message::observe(MessageObserver::class);
     }
 }

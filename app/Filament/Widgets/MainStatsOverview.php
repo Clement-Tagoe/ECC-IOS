@@ -28,7 +28,7 @@ class MainStatsOverview extends StatsOverviewWidget
             ? round((($totalValidCases - $totalValidCasesYesterday) / $totalValidCasesYesterday) * 100, 1)
             : 0;
 
-        $stats = CallLog::whereDate('date', Carbon::today())
+        $stats = CallLog::where('date', Carbon::today())
             ->selectRaw('
                 SUM(incoming_calls) as incoming,
                 SUM(total_calls_received) as received,

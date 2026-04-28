@@ -70,7 +70,7 @@ class CallStatsOverview extends StatsOverviewWidget
             : 0;
         
         $last7Attendance = collect(range(6, 0))->map(function ($daysAgo) {
-            $reports = CallShiftReport::whereDate('date', today()->subDays($daysAgo))->get();
+            $reports = CallShiftReport::where('date', today()->subDays($daysAgo))->get();
             $expected = $reports->sum('expected_attendance');
             $present  = $reports->sum('present');
             return $expected > 0 ? round(($present / $expected) * 100) : 0;

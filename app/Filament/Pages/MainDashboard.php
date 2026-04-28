@@ -2,7 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Widgets\GhanaRegionMapWidget;
+use App\Filament\Widgets\GhanaCasesMapWidget;
+use App\Filament\Widgets\GhanaTasksTopicsMapWidget;
 use App\Filament\Widgets\MainStatsOverview;
 use Filament\Pages\Dashboard as BaseDashboard;
 
@@ -15,8 +16,10 @@ class MainDashboard extends BaseDashboard
     public function getWidgets(): array
     {
         return [
-            // GhanaRegionMapWidget::class,
+
             MainStatsOverview::class,
+            GhanaCasesMapWidget::class,
+            GhanaTasksTopicsMapWidget::class,
             
             
         ];
