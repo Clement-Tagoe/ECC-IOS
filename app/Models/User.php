@@ -19,7 +19,7 @@ use Wirechat\Wirechat\Traits\InteractsWithWirechat;
 
 class User extends Authenticatable implements WirechatUser, Commenter
 {
-    /** @use HasFactory<UserFactory> */
+  
     use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps;
 
     /**

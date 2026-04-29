@@ -40,7 +40,7 @@ class MessageObserver
                             ->url('/auth/chats')
                             ->markAsRead(),
                     ])
-                    ->sendToDatabase($user);
+                    ->sendToDatabase($user, isEventDispatched: true);
             });
     }
 }

@@ -4,13 +4,12 @@ namespace App\Listeners;
 
 
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Wirechat\Wirechat\Events\NotifyParticipant;
 
-class SendFilamentChatNotification implements ShouldQueue
+class SendFilamentChatNotification
 {
-    use InteractsWithQueue;
 
     /**
      * Create the event listener.
@@ -53,7 +52,7 @@ class SendFilamentChatNotification implements ShouldQueue
         //             ->url('/chats')
         //             ->markAsRead(),
         //     ])
-        //     ->broadcast($user);
+        //     ->sendToDatabase($user, isEventDispatched: true);
     }
 
     //     $message      = $event->message;
