@@ -312,7 +312,7 @@
         
         </div>
         
-        <script>
+        {{-- <script>
         function ghanaTasksMap() {
             return {
                 hovered : null,
@@ -335,6 +335,6 @@
                 onMove(event)   { this.tt.x = event.clientX + 16; this.tt.y = event.clientY - 12; },
             };
         }
-        </script>
+        </script> --}}
     </x-filament::section>
 </x-filament-widgets::widget>

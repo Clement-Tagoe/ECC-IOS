@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use FilamentInbox\Concerns\HasInbox;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Kirschbaum\Commentions\Contracts\Commenter;
 use Mattiverse\Userstamps\Traits\Userstamps;
+use VanOns\LaravelAttachmentLibrary\Concerns\HasAttachments;
 use Wirechat\Wirechat\Panel;
 use Wirechat\Wirechat\Contracts\WirechatUser;
 use Wirechat\Wirechat\Traits\InteractsWithWirechat;
@@ -20,7 +23,7 @@ use Wirechat\Wirechat\Traits\InteractsWithWirechat;
 class User extends Authenticatable implements WirechatUser, Commenter
 {
   
-    use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps;
+    use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps, HasAttachments;
 
     /**
      * The attributes that are mass assignable.

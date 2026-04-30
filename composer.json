@@ -16,6 +16,7 @@
         "laravel/reverb": "^1.10",
         "laravel/tinker": "^2.10.1",
         "namu/wirechat": "^0.5.4",
+        "van-ons/laravel-attachment-library": "^1.2",
         "wildside/userstamps": "^4.0"
     },
     "require-dev": {

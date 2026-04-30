@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use VanOns\FilamentAttachmentLibrary\FilamentAttachmentLibrary;
 
 class AuthPanelProvider extends PanelProvider
 {
@@ -65,6 +66,40 @@ class AuthPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::BODY_END,
                 fn (): string => Blade::render('@wirechatAssets'),
+            )
+            ->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn (): string => <<<'HTML'
+                    <script>
+                        document.addEventListener('alpine:init', () => {
+
+                            Alpine.data('ghanaCasesMap', () => ({
+                                hovered: null,
+                                tt: { visible: false, x: 0, y: 0, name: '', total: 0, byNature: [] },
+                                init() {},
+                                onEnter(event, data) {
+                                    this.hovered = event.currentTarget.dataset.slug;
+                                    this.tt = { visible: true, x: event.clientX + 16, y: event.clientY - 12, name: data.name, total: data.total, byNature: data.byNature ?? [] };
+                                },
+                                onLeave()     { this.hovered = null; this.tt.visible = false; },
+                                onMove(event) { this.tt.x = event.clientX + 16; this.tt.y = event.clientY - 12; },
+                            }));
+
+                            Alpine.data('ghanaTasksMap', () => ({
+                                hovered: null,
+                                tt: { visible: false, x: 0, y: 0, name: '', total: 0, byTopic: [] },
+                                init() {},
+                                onEnter(event, data) {
+                                    this.hovered = event.currentTarget.dataset.slug;
+                                    this.tt = { visible: true, x: event.clientX + 16, y: event.clientY - 12, name: data.name, total: data.total, byTopic: data.byTopic ?? [] };
+                                },
+                                onLeave()     { this.hovered = null; this.tt.visible = false; },
+                                onMove(event) { this.tt.x = event.clientX + 16; this.tt.y = event.clientY - 12; },
+                            }));
+
+                        });
+                    </script>
+                HTML,
             )
             ->middleware([
                 EncryptCookies::class,
