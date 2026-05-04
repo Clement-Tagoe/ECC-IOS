@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Reports\Pages;
 
 use App\Filament\Resources\Reports\ReportResource;
 use Filament\Actions\Action;
+use Filament\Notifications\Events\DatabaseNotificationsSent;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,7 @@ class CreateReport extends CreateRecord
                             ->close(),
                     ])
                     ->sendToDatabase($user);
+                event(new DatabaseNotificationsSent($user));
                 }
         }
     }

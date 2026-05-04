@@ -11,12 +11,13 @@
         "filament/spatie-laravel-media-library-plugin": "5.0",
         "flowframe/laravel-trend": "^0.5.0",
         "ghaffaru/ghcities-php": "^1.1",
+        "kalnoy/nestedset": "^7.0",
         "kirschbaum-development/commentions": "^0.7.10",
         "laravel/framework": "^12.0",
         "laravel/reverb": "^1.10",
         "laravel/tinker": "^2.10.1",
+        "mmes-design/filament-file-manager": "^1.6",
         "namu/wirechat": "^0.5.4",
-        "van-ons/laravel-attachment-library": "^1.2",
         "wildside/userstamps": "^4.0"
     },
     "require-dev": {

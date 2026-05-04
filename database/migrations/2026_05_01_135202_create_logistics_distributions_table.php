@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('logistics_distributions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('logistics_management_id')->constrained('logistics_management')->cascadeOnDelete();
+            $table->string('department');
+            $table->string('quantity');
+            $table->date('date');
             $table->timestamps();
             $table->softDeletes();
             $table->userstamps();
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('region');
+        Schema::dropIfExists('logistics_distributions');
     }
 };

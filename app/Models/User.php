@@ -15,7 +15,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
 use Kirschbaum\Commentions\Contracts\Commenter;
 use Mattiverse\Userstamps\Traits\Userstamps;
-use VanOns\LaravelAttachmentLibrary\Concerns\HasAttachments;
 use Wirechat\Wirechat\Panel;
 use Wirechat\Wirechat\Contracts\WirechatUser;
 use Wirechat\Wirechat\Traits\InteractsWithWirechat;
@@ -23,7 +22,7 @@ use Wirechat\Wirechat\Traits\InteractsWithWirechat;
 class User extends Authenticatable implements WirechatUser, Commenter
 {
   
-    use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps, HasAttachments;
+    use HasFactory, Notifiable, InteractsWithWirechat, SoftDeletes, Userstamps;
 
     /**
      * The attributes that are mass assignable.
@@ -37,6 +36,7 @@ class User extends Authenticatable implements WirechatUser, Commenter
         'contact',
         'role_id',
         'department_id',
+        'theme',
     ];
 
     /**

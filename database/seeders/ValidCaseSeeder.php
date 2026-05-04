@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ValidCase;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class ValidCaseSeeder extends Seeder
@@ -15,7 +16,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000001',
             'reporting_time' => '08:15:00',
-            'reporting_date' => '2026-04-20',
+            'reporting_date' => Carbon::now(),
             'agency_id' => 1,
             'region_id' => 1,
             'location_id' => 1,
@@ -30,7 +31,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000002',
             'reporting_time' => '09:30:00',
-            'reporting_date' => '2026-04-20',
+            'reporting_date' => Carbon::now(),
             'agency_id' => 2,
             'region_id' => 2,
             'location_id' => 2,
@@ -45,7 +46,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000003',
             'reporting_time' => '11:45:00',
-            'reporting_date' => '2026-04-21',
+            'reporting_date' => Carbon::now(),
             'agency_id' => 3,
             'region_id' => 4,
             'location_id' => 3,
@@ -60,7 +61,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000004',
             'reporting_time' => '13:20:00',
-            'reporting_date' => '2026-04-21',
+            'reporting_date' => Carbon::now(),
             'agency_id' => 4,
             'region_id' => 2,
             'location_id' => 4,
@@ -75,7 +76,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000005',
             'reporting_time' => '15:00:00',
-            'reporting_date' => '2026-04-22',
+            'reporting_date' => Carbon::now(),
             'agency_id' => 1,
             'region_id' => 3,
             'location_id' => 5,
@@ -90,7 +91,7 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000050',
             'reporting_time' => '22:10:00',
-            'reporting_date' => '2026-04-22',
+            'reporting_date' => Carbon::now(),
             'agency_id' => 4,
             'region_id' => 3,
             'location_id' => 5,
@@ -105,9 +106,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000001', 
             'reporting_time' => '08:15:22', 
-            'reporting_date' => '2026-04-23', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 1, 
-            'region_id' => 1, 
+            'region_id' => 5, 
             'location_id' => 1,
             'status' => 'reviewed', 
             'contact_name' => 'Ama Serwaa', 
@@ -121,9 +122,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000002', 
             'reporting_time' => '14:42:10', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 3, 
-            'region_id' => 2, 
+            'region_id' => 6, 
             'location_id' => 2, 
             'status' => 'reviewed',
             'contact_name' => 'Joseph Osei', 
@@ -136,9 +137,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000003', 
             'reporting_time' => '03:18:45', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 2, 
-            'region_id' => 4, 
+            'region_id' => 5, 
             'location_id' => 3,
             'status' => 'reviewed', 
             'contact_name' => 'Kofi Mensah', 
@@ -151,9 +152,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000004', 
             'reporting_time' => '11:05:33', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 4, 
-            'region_id' => 1, 
+            'region_id' => 6, 
             'location_id' => 1, 
             'status' => 'in_review',
             'contact_name' => 'Fuseini Yakubu', 
@@ -166,9 +167,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000005', 
             'reporting_time' => '09:22:17', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 3, 
-            'region_id' => 4, 
+            'region_id' => 7, 
             'location_id' => 3, 
             'status' => 'in_review',
             'contact_name' => 'Michael Appiah', 
@@ -181,9 +182,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000006', 
             'reporting_time' => '22:47:09', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 1, 
-            'region_id' => 3, 
+            'region_id' => 8, 
             'location_id' => 5,
             'status' => 'reviewed', 
             'contact_name' => 'Emmanuel Mensah', 
@@ -196,9 +197,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000007', 
             'reporting_time' => '16:30:55', 
-            'reporting_date' => '2026-04-20', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 2, 
-            'region_id' => 4, 
+            'region_id' => 7, 
             'location_id' => 3, 
             'status' => 'reviewed',
             'contact_name' => 'Ablavi Dzakpasu', 
@@ -211,9 +212,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000008', 
             'reporting_time' => '06:12:40', 
-            'reporting_date' => '2026-04-20', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 4, 
-            'region_id' => 1, 
+            'region_id' => 8, 
             'location_id' =>1,
             'status' => 'in_review', 
             'contact_name' => 'Akolgo Atule', 
@@ -226,9 +227,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000009', 
             'reporting_time' => '19:08:21', 
-            'reporting_date' => '2026-04-21', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 3, 
-            'region_id' => 3, 
+            'region_id' => 9, 
             'location_id' => 5,
             'status' => 'in_review', 
             'contact_name' => 'Comfort Amoah', 
@@ -241,9 +242,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000010', 
             'reporting_time' => '13:55:00', 
-            'reporting_date' => '2026-04-22', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 1, 
-            'region_id' => 4, 
+            'region_id' => 10, 
             'location_id' => 3, 
             'status' => 'in_review',
             'contact_name' => 'Kwabena Twum', 
@@ -256,9 +257,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000011',
             'reporting_time' => '04:22:33', 
-            'reporting_date' => '2026-04-19', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 2, 
-            'region_id' => 2, 
+            'region_id' => 11, 
             'location_id' => 2, 
             'status' => 'reviewed',
             'contact_name' => 'Akosua Poku', 
@@ -271,9 +272,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000012', 
             'reporting_time' => '10:40:19', 
-            'reporting_date' => '2026-04-19', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 4, 
-            'region_id' => 1, 
+            'region_id' => 9, 
             'status' => 'reviewed',
             'location_id' => 1, 
             'contact_name' => 'Sulemana Issah', 
@@ -286,9 +287,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000013', 
             'reporting_time' => '21:17:44', 
-            'reporting_date' => '2026-04-22', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 1, 
-            'region_id' => 4, 
+            'region_id' => 16, 
             'location_id' => 3,
             'status' => 'in_review', 
             'contact_name' => 'Adjoa Tetteh', 
@@ -301,9 +302,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000014', 
             'reporting_time' => '07:33:12', 
-            'reporting_date' => '2026-04-23', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 3, 
-            'region_id' => 2, 
+            'region_id' => 10, 
             'location_id' => 4,
             'status' => 'reviewed', 
             'contact_name' => 'Bismark Azure', 
@@ -316,9 +317,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000015', 
             'reporting_time' => '18:09:56', 
-            'reporting_date' => '2026-04-22', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 2, 
-            'region_id' => 3, 
+            'region_id' => 15, 
             'location_id' => 5, 
             'status' => 'reviewed',  
             'contact_name' => 'Fuseini Dramani', 
@@ -331,9 +332,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000016', 
             'reporting_time' => '12:25:47',
-            'reporting_date' => '2026-04-20', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 4, 
-            'region_id' => 1, 
+            'region_id' => 13, 
             'location_id' => 1, 
             'status' => 'in_review',
             'contact_name' => 'Nana Yaw', 
@@ -346,9 +347,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000017', 
             'reporting_time' => '05:50:11', 
-            'reporting_date' => '2026-04-22', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 1, 
-            'region_id' => 2, 
+            'region_id' => 12, 
             'location_id' => 2, 
             'status' => 'reviewed',
             'contact_name' => 'Yaa Pokuaa', 
@@ -361,9 +362,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000018', 
             'reporting_time' => '15:14:29', 
-            'reporting_date' => '2026-04-20', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 3, 
-            'region_id' => 4, 
+            'region_id' => 13, 
             'location_id' => 3, 
             'status' => 'reviewed',
             'contact_name' => 'Esther Asante', 
@@ -376,9 +377,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000019', 
             'reporting_time' => '23:41:03', 
-            'reporting_date' => '2026-04-23', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 2, 
-            'region_id' => 1, 
+            'region_id' => 11, 
             'location_id' => 1, 
             'status' => 'in_review',
             'contact_name' => 'Dzifa Agbenyega', 
@@ -391,9 +392,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000020', 
             'reporting_time' => '09:07:38', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 4, 
-            'region_id' => 3, 
+            'region_id' => 15, 
             'location_id' => 5, 
             'status' => 'in_review',
             'contact_name' => 'Alhassan Mohammed', 
@@ -406,9 +407,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000048', 
             'reporting_time' => '17:55:12', 
-            'reporting_date' => '2026-04-21', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 1, 
-            'region_id' => 4, 
+            'region_id' => 16, 
             'location_id' => 3,
             'status' => 'reviewed', 
             'contact_name' => 'Solomon Tetteh', 
@@ -421,9 +422,9 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000049', 
             'reporting_time' => '02:18:09', 
-            'reporting_date' => '2026-04-24', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 2, 
-            'region_id' => 2, 
+            'region_id' => 11, 
             'location_id' => 2, 
             'status' => 'in_review',
             'contact_name' => 'Esi Arhin', 
@@ -436,9 +437,445 @@ class ValidCaseSeeder extends Seeder
         ValidCase::create([
             'case_id' => 'VSC1000050', 
             'reporting_time' => '13:40:22', 
-            'reporting_date' => '2026-04-23', 
+            'reporting_date' => Carbon::now(), 
             'agency_id' => 3, 
-            'region_id' => 2, 
+            'region_id' => 8, 
+            'location_id' => 4,
+            'status' => 'reviewed', 
+            'contact_name' => 'Beatrice Agyemang', 
+            'contact_number' => '0547788990', 
+            'description' => 'Ambulance needed for accident victim with head injury.', 
+            'valid_case_nature_id' => 4, 
+            'feedback_comment' => 'Victim rushed to hospital',
+            ]);
+        
+        ValidCase::create([
+            'case_id' => 'VSC1000001',
+            'reporting_time' => '08:15:00',
+            'reporting_date' => Carbon::now(),
+            'agency_id' => 1,
+            'region_id' => 1,
+            'location_id' => 1,
+            'status' => 'in_review',
+            'contact_name' => 'Kwame Mensah',
+            'contact_number' => '0241111111',
+            'description' => 'Reported theft at Makola market.',
+            'valid_case_nature_id' => 1,
+            'feedback_comment' => 'Suspect apprehended.',
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000002',
+            'reporting_time' => '09:30:00',
+            'reporting_date' => Carbon::now(),
+            'agency_id' => 2,
+            'region_id' => 2,
+            'location_id' => 2,
+            'status' => 'reviewed',
+            'contact_name' => 'Ama Boateng',
+            'contact_number' => '0242222222',
+            'description' => 'Fire outbreak in a residential building.',
+            'valid_case_nature_id' => 2,
+            'feedback_comment' => 'Fire contained successfully.',
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000003',
+            'reporting_time' => '11:45:00',
+            'reporting_date' => Carbon::now(),
+            'agency_id' => 3,
+            'region_id' => 4,
+            'location_id' => 3,
+            'status' => 'in_review',
+            'contact_name' => 'Joseph Annan',
+            'contact_number' => '0243333333',
+            'description' => 'Patient needs urgent transfer to teaching hospital.',
+            'valid_case_nature_id' => 14,
+            'feedback_comment' => 'Patient stabilized.',
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000004',
+            'reporting_time' => '13:20:00',
+            'reporting_date' => Carbon::now(),
+            'agency_id' => 4,
+            'region_id' => 2,
+            'location_id' => 4,
+            'status' => 'reviewed',
+            'contact_name' => 'Kofi Agbo',
+            'contact_number' => '0244444444',
+            'description' => 'Flooding affecting multiple homes.',
+            'valid_case_nature_id' => 4,
+            'feedback_comment' => 'Relief items distributed.',
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000005',
+            'reporting_time' => '15:00:00',
+            'reporting_date' => Carbon::now(),
+            'agency_id' => 1,
+            'region_id' => 3,
+            'location_id' => 5,
+            'status' => 'in_review',
+            'contact_name' => 'Yaw Gyan',
+            'contact_number' => '0245555555',
+            'description' => 'Armed robbery at fuel station.',
+            'valid_case_nature_id' => 5,
+            'feedback_comment' => 'Investigation ongoing.',
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000050',
+            'reporting_time' => '22:10:00',
+            'reporting_date' => Carbon::now(),
+            'agency_id' => 4,
+            'region_id' => 3,
+            'location_id' => 5,
+            'status' => 'reviewed',
+            'contact_name' => 'Fuseini Haruna',
+            'contact_number' => '0249999999',
+            'description' => 'Earth tremor reported with minor structural damage.',
+            'valid_case_nature_id' => 16,
+            'feedback_comment' => 'Assessment ongoing.',
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000051', 
+            'reporting_time' => '08:15:22', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 1, 
+            'region_id' => 5, 
+            'location_id' => 1,
+            'status' => 'reviewed', 
+            'contact_name' => 'Ama Serwaa', 
+            'contact_number' => '0541234567', 
+            'description' => 'Armed robbery in progress at Adabraka market.', 
+            'valid_case_nature_id' => 13, 
+            'feedback_comment' => 
+            'Suspects arrested, victims receiving medical attention', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000052', 
+            'reporting_time' => '14:42:10', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 3, 
+            'region_id' => 6, 
+            'location_id' => 2, 
+            'status' => 'reviewed',
+            'contact_name' => 'Joseph Osei', 
+            'contact_number' => '0245678901', 
+            'description' => 'Serious road traffic accident involving two trotros.', 
+            'valid_case_nature_id' => 8, 
+            'feedback_comment' => '6 victims transported to KATH', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000053', 
+            'reporting_time' => '03:18:45', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 2, 
+            'region_id' => 5, 
+            'location_id' => 3,
+            'status' => 'reviewed', 
+            'contact_name' => 'Kofi Mensah', 
+            'contact_number' => '0278901234', 
+            'description' => 'Market fire spreading rapidly near castle.', 
+            'valid_case_nature_id' => 10, 
+            'feedback_comment' => 'Fire contained, no casualties reported', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000054', 
+            'reporting_time' => '11:05:33', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 4, 
+            'region_id' => 6, 
+            'location_id' => 1, 
+            'status' => 'in_review',
+            'contact_name' => 'Fuseini Yakubu', 
+            'contact_number' => '0554321987', 
+            'description' => 'Heavy flooding in low-lying areas after overnight rain.', 
+            'valid_case_nature_id' => 3, 
+            'feedback_comment' => '30 households evacuated to safety', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000055', 
+            'reporting_time' => '09:22:17', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 3, 
+            'region_id' => 7, 
+            'location_id' => 3, 
+            'status' => 'in_review',
+            'contact_name' => 'Michael Appiah', 
+            'contact_number' => '0243887612', 
+            'description' => 'Doctor requesting ambulance for critical patient transfer.', 
+            'valid_case_nature_id' => 9, 
+            'feedback_comment' => 'Patient transferred to Sonotech Ridge Hospital', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000056', 
+            'reporting_time' => '22:47:09', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 1, 
+            'region_id' => 8, 
+            'location_id' => 5,
+            'status' => 'reviewed', 
+            'contact_name' => 'Emmanuel Mensah', 
+            'contact_number' => '0267123456', 
+            'description' => 'Snatching of mobile phones and bags by two men on motorbike.', 
+            'valid_case_nature_id' => 5, 
+            'feedback_comment' => 'Investigation ongoing', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000057', 
+            'reporting_time' => '16:30:55', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 2, 
+            'region_id' => 7, 
+            'location_id' => 3, 
+            'status' => 'reviewed',
+            'contact_name' => 'Ablavi Dzakpasu', 
+            'contact_number' => '0209876543', 
+            'description' => 'Building collapse at construction site.', 
+            'valid_case_nature_id' => 12, 
+            'feedback_comment' => '3 injured rescued, search for others ongoing', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000058', 
+            'reporting_time' => '06:12:40', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 4, 
+            'region_id' => 8, 
+            'location_id' =>1,
+            'status' => 'in_review', 
+            'contact_name' => 'Akolgo Atule', 
+            'contact_number' => '0538765432', 
+            'description' => 'Earth tremor felt across several communities.', 
+            'valid_case_nature_id' => 5, 
+            'feedback_comment' => 'No major damage reported', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000059', 
+            'reporting_time' => '19:08:21', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 3, 
+            'region_id' => 9, 
+            'location_id' => 5,
+            'status' => 'in_review', 
+            'contact_name' => 'Comfort Amoah', 
+            'contact_number' => '0572345678', 
+            'description' => 'Pregnant woman in labour with complications.', 
+            'valid_case_nature_id' => 15, 
+            'feedback_comment' => 'Mother and baby safe at hospital', 
+        ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000060', 
+            'reporting_time' => '13:55:00', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 1, 
+            'region_id' => 10, 
+            'location_id' => 3, 
+            'status' => 'in_review',
+            'contact_name' => 'Kwabena Twum', 
+            'contact_number' => '0247654321', 
+            'description' => 'Domestic violence with serious injuries.', 
+            'valid_case_nature_id' => 8, 
+            'feedback_comment' => 'Victim receiving treatment, suspect in custody', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000061',
+            'reporting_time' => '04:22:33', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 2, 
+            'region_id' => 11, 
+            'location_id' => 2, 
+            'status' => 'reviewed',
+            'contact_name' => 'Akosua Poku', 
+            'contact_number' => '0276543210', 
+            'description' => 'Gas explosion at filling station.', 
+            'valid_case_nature_id' => 10, 
+            'feedback_comment' => 'Fire extinguished, 4 injured', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000062', 
+            'reporting_time' => '10:40:19', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 4, 
+            'region_id' => 14, 
+            'status' => 'reviewed',
+            'location_id' => 1, 
+            'contact_name' => 'Sulemana Issah', 
+            'contact_number' => '0559876543', 
+            'description' => 'Severe flooding affecting 5 communities.', 
+            'valid_case_nature_id' => 12, 
+            'feedback_comment' => 'Relief items distributed', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000063', 
+            'reporting_time' => '21:17:44', 
+            'reporting_date' => Carbon::now(), 
+            'agency_id' => 1, 
+            'region_id' => 14, 
+            'location_id' => 3,
+            'status' => 'in_review', 
+            'contact_name' => 'Adjoa Tetteh', 
+            'contact_number' => '0265432109', 
+            'description' => 'Armed robbery at fuel station.', 
+            'valid_case_nature_id' => 16, 
+            'feedback_comment' => 'Cash and phones stolen', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000064', 
+            'reporting_time' => '07:33:12', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 3, 
+            'region_id' => 10, 
+            'location_id' => 4,
+            'status' => 'reviewed', 
+            'contact_name' => 'Bismark Azure', 
+            'contact_number' => '0248765432', 
+            'description' => 'Child fell from tree, unconscious.', 
+            'valid_case_nature_id' => 2, 
+            'feedback_comment' => 'Child stabilized and admitted', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000065', 
+            'reporting_time' => '18:09:56', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 2, 
+            'region_id' => 15, 
+            'location_id' => 5, 
+            'status' => 'reviewed',  
+            'contact_name' => 'Fuseini Dramani', 
+            'contact_number' => '0203456789', 
+            'description' => 'Residential building on fire.', 
+            'valid_case_nature_id' => 4, 
+            'feedback_comment' => 'Fire put out, family safe', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000066', 
+            'reporting_time' => '12:25:47',
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 4, 
+            'region_id' => 13, 
+            'location_id' => 1, 
+            'status' => 'in_review',
+            'contact_name' => 'Nana Yaw', 
+            'contact_number' => '0543210987', 
+            'description' => 'Flooding in several estates after heavy downpour.', 
+            'valid_case_nature_id' => 14, 
+            'feedback_comment' => 'Evacuation completed', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000067', 
+            'reporting_time' => '05:50:11', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 1, 
+            'region_id' => 12, 
+            'location_id' => 2, 
+            'status' => 'reviewed',
+            'contact_name' => 'Yaa Pokuaa', 
+            'contact_number' => '0278901234', 
+            'description' => 'Pickpocketing incident at market.', 
+            'valid_case_nature_id' => 2, 
+            'feedback_comment' => 'Suspect identified on CCTV', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000068', 
+            'reporting_time' => '15:14:29', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 3, 
+            'region_id' => 13, 
+            'location_id' => 3, 
+            'status' => 'reviewed',
+            'contact_name' => 'Esther Asante', 
+            'contact_number' => '0241122334', 
+            'description' => 'Request for ambulance - stroke patient.', 
+            'valid_case_nature_id' => 2, 
+            'feedback_comment' => 'Patient transported to hospital', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000069', 
+            'reporting_time' => '23:41:03', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 2, 
+            'region_id' => 11, 
+            'location_id' => 1, 
+            'status' => 'in_review',
+            'contact_name' => 'Dzifa Agbenyega', 
+            'contact_number' => '0267788990', 
+            'description' => 'Bush fire approaching residential area.', 
+            'valid_case_nature_id' => 15, 
+            'feedback_comment' => 'Fire contained', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000070', 
+            'reporting_time' => '09:07:38', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 4, 
+            'region_id' => 11, 
+            'location_id' => 5, 
+            'status' => 'in_review',
+            'contact_name' => 'Alhassan Mohammed', 
+            'contact_number' => '0536677889', 
+            'description' => 'Windstorm destroyed several structures.', 
+            'valid_case_nature_id' => 16, 
+            'feedback_comment' => 'Relief efforts started', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000078', 
+            'reporting_time' => '17:55:12', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 1, 
+            'region_id' => 16, 
+            'location_id' => 3,
+            'status' => 'reviewed', 
+            'contact_name' => 'Solomon Tetteh', 
+            'contact_number' => '0245566778', 
+            'description' => 'Carjacking at gunpoint.', 
+            'valid_case_nature_id' => 9, 
+            'feedback_comment' => 'Vehicle recovered, suspects at large', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000079', 
+            'reporting_time' => '02:18:09', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 2, 
+            'region_id' => 11, 
+            'location_id' => 2, 
+            'status' => 'in_review',
+            'contact_name' => 'Esi Arhin', 
+            'contact_number' => '0273344556', 
+            'description' => 'Chemical storage warehouse fire.', 
+            'valid_case_nature_id' => 2, 
+            'feedback_comment' => 'Firefighters contained blaze', 
+            ]);
+
+        ValidCase::create([
+            'case_id' => 'VSC1000090', 
+            'reporting_time' => '13:40:22', 
+            'reporting_date' => Carbon::now()->subDays(1), 
+            'agency_id' => 3, 
+            'region_id' => 8, 
             'location_id' => 4,
             'status' => 'reviewed', 
             'contact_name' => 'Beatrice Agyemang', 

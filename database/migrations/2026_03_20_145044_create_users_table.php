@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('contact')->nullable();
             $table->foreignId('department_id')->nullable()->constrained()->cascadeOnDelete();
             $table->rememberToken();
+            $table->string('theme')->default('ocean-depths');
             $table->timestamps();
             $table->softDeletes();
             $table->userstamps();

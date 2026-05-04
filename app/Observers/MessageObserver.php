@@ -3,11 +3,18 @@
 namespace App\Observers;
 
 use Filament\Actions\Action;
+use Filament\Notifications\Events\DatabaseNotificationsSent;
 use Filament\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 use Wirechat\Wirechat\Models\Message;
 
-class MessageObserver
+class MessageObserver implements ShouldQueue
 {
+    use InteractsWithQueue;
+
+    public $afterCommit = true;
+
     public function created(Message $message): void
     {
         $conversation = $message->conversation;
@@ -38,9 +45,11 @@ class MessageObserver
                         Action::make('open')
                             ->label('Open Chat')
                             ->url('/auth/chats')
-                            ->markAsRead(),
+                            ->markAsRead()
+                            ->close(),
                     ])
-                    ->sendToDatabase($user, isEventDispatched: true);
+                    ->sendToDatabase($user);
+                event(new DatabaseNotificationsSent($user));
             });
     }
 }

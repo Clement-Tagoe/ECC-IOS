@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\ApplyFilamentTheme;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -19,7 +20,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use VanOns\FilamentAttachmentLibrary\FilamentAttachmentLibrary;
+use MmesDesign\FilamentFileManager\FileManagerPlugin;
+
 
 class AuthPanelProvider extends PanelProvider
 {
@@ -44,6 +46,9 @@ class AuthPanelProvider extends PanelProvider
             ->brandName('ECC-IOS')
             ->databaseNotifications()
             ->broadcasting()
+            ->plugins([
+                FileManagerPlugin::make(),
+            ])
             ->registration()
             ->profile()
             ->navigationGroups([
@@ -101,6 +106,19 @@ class AuthPanelProvider extends PanelProvider
                     </script>
                 HTML,
             )
+            ->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn (): string => <<<'HTML'
+                    <script>
+                        window.addEventListener('theme-applied', e => {
+                            const theme = e.detail.theme;
+                            document.documentElement.style.setProperty(
+                                '--sidebar-bg', theme.sidebar.background
+                            );
+                        });
+                    </script>
+                HTML,
+            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -111,6 +129,7 @@ class AuthPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                ApplyFilamentTheme::class
             ])
             ->authMiddleware([
                 Authenticate::class,
